@@ -57,7 +57,6 @@ export default {
     methods: {
 
         getGoodsList(flag) {
-            console.log('getGoodsList ' + flag)
             var param = {
                 page: this.page,
                 pageSize: this.pageSize,
@@ -67,6 +66,7 @@ export default {
             axios.get("/goods/list", {
                 params: param
             }).then((res) => {
+                console.log(JSON.stringify(res.data))
                 if (flag) {
                     this.goodsList = this.goodsList.concat(res.data);
                     if (res.data.length !== 0) {
