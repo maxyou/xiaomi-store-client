@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/posts/1': {
-        target: 'http://jsonplaceholder.typicode.com',
+      '/goods/list': {
+        target: 'http://hotemotion.fun:3389',
         changeOrigin: true
         // pathRewrite: {
-        //   '^/post/1': '/post/1'
+        //   '^/api': ''
         // }
       }
     },
