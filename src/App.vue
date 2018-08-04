@@ -64,7 +64,7 @@ export default {
                 orderFlag: this.orderFlag,
                 priceLevel: this.priceLevel,
             };
-            axios.get("/post/1", {
+            axios.get("/posts/1", {
                 params: param
             }).then((res) => {
                 if (flag) {

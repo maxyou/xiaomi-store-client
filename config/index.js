@@ -11,12 +11,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/post/1': {
+      '/posts/1': {
         target: 'http://jsonplaceholder.typicode.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/post/1': ''
-        }
+        changeOrigin: true
+        // pathRewrite: {
+        //   '^/post/1': '/post/1'
+        // }
       }
     },
 
