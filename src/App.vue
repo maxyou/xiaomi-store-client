@@ -1,8 +1,8 @@
 <template>
 <div id="app">
-    <img src="./assets/logo.png">
-    <button @click="getGoodsList">load goods list</button>
-    <router-view/>
+    <button v-if="false" @click="getGoodsList">load goods list</button>
+    <router-view name="header"/>
+    <router-view name="content"/>
 </div>
 </template>
 
