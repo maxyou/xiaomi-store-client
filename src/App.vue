@@ -4,7 +4,7 @@
     <hr>
     <miheader class="miheader"></miheader>
     <hr>
-    <router-view name="content" />
+    <router-view></router-view>
     <hr>
 </div>
 </template>

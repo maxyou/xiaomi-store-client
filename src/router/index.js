@@ -17,12 +17,10 @@ export default new Router({
     },
     {
       path: '/goodslist',
-      name: 'goodslist',
       component:GoodsList      
     },
     {
       path: '/cart',
-      name: 'cart',
       component:CartFlowchart,
       children:[
         {
