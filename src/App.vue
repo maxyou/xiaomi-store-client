@@ -1,9 +1,9 @@
 <template>
 <div id="app">
-    <button v-if="true" @click="getGoodsList">load goods list</button>
-    <hr>
+    <button v-if="false" @click="getGoodsList">load goods list</button>
+    <!-- <hr> -->
     <miheader class="miheader"></miheader>
-    <hr>
+    <!-- <hr> -->
     <router-view></router-view>
     <hr>
 </div>
@@ -44,18 +44,15 @@ export default {
 
 <style>
 #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+    width: 80%;
+    min-width: 800px;
+    margin: 0 auto;
     background-color: green;
 }
 
-.miheader {
+/* .miheader {
     width: 100%;
     height: 200px;
     background-color: yellow;
-}
+} */
 </style>
