@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Header from '@/components/Header'
 import GoodsList from '@/components/GoodsList'
-import Cart from '@/components/Cart'
+import CartFlowchart from '@/components/CartFlowchart'
+import CartList from '@/components/CartList'
+import CartAddress from '@/components/CartAddress'
+import CartDetail from '@/components/CartDetail'
+import CartCompleted from '@/components/CartCompleted'
 
 Vue.use(Router)
 
@@ -15,18 +18,34 @@ export default new Router({
     {
       path: '/goodslist',
       name: 'goodslist',
-      components:{ 
-        header: Header,
-        content: GoodsList
-      }
+      component:GoodsList      
     },
     {
       path: '/cart',
       name: 'cart',
-      components:{ 
-        header: Header,
-        content: Cart
-      }
+      component:CartFlowchart,
+      children:[
+        {
+          path: '',
+          redirect:'list'      
+        },
+        {
+          path: 'list',
+          component:CartList      
+        },
+        {
+          path: 'address',
+          component:CartAddress      
+        },
+        {
+          path: 'detail',
+          component:CartDetail
+        },
+        {
+          path: 'completed',
+          component:CartCompleted     
+        }
+      ]
     },
   ]
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    
+    <router-link to="/cart/detail" tag="button">goto /cart/detail</router-link>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   data () {
     return {
       goodsList: [],
-      msg: 'this is shopping cart page'
+      msg: 'this is cart address'
     }
   }
 }

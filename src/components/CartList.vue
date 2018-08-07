@@ -1,19 +1,17 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-link to="/goodslist" tag="button">goto goods list</router-link>
-    <router-link to="/cart" tag="button">goto cart</router-link>
+    <router-link to="/cart/address" tag="button">goto /cart/address</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Header',
+  name: 'Cart',
   data () {
     return {
-      login: false,
-      howManyInShopCart: 0,
-      msg: 'this is Header'
+      goodsList: [],
+      msg: 'this is cart list'
     }
   }
 }

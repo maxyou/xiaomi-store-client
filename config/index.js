@@ -11,12 +11,21 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/goods/list': {
-        target: 'http://hotemotion.fun:3389',
-        changeOrigin: true
-        // pathRewrite: {
-        //   '^/api': ''
-        // }
+      // '/goods/list': {
+      //   target: 'http://hotemotion.fun:3389',
+      //   changeOrigin: true
+      // }
+      '/goods':{
+        target:'http://hotemotion.fun:3389'
+      },
+      '/goods/*':{
+        target:'http://hotemotion.fun:3389'
+      },
+      '/user':{
+        target:'http://hotemotion.fun:3389'
+      },
+      '/user/*':{
+        target:'http://hotemotion.fun:3389'
       }
     },
 

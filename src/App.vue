@@ -1,19 +1,25 @@
 <template>
 <div id="app">
-    <button v-if="false" @click="getGoodsList">load goods list</button>
-    <router-view name="header"/>
-    <router-view name="content"/>
+    <button v-if="true" @click="getGoodsList">load goods list</button>
+    <hr>
+    <miheader class="miheader"></miheader>
+    <hr>
+    <router-view name="content" />
+    <hr>
 </div>
 </template>
 
 <script>
+import MiHeader from './components/MiHeader.vue'
 import axios from 'axios'
 
 // axios.defaults.baseURL = 'http://hotemotion.fun:3389';
 
 export default {
     name: 'App',
-
+    components: {
+        miheader: MiHeader
+    },
     data() {
         return {}
     },
@@ -45,5 +51,11 @@ export default {
     color: #2c3e50;
     margin-top: 60px;
     background-color: green;
+}
+
+.miheader {
+    width: 100%;
+    height: 200px;
+    background-color: yellow;
 }
 </style>
