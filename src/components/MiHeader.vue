@@ -1,8 +1,12 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <router-link to="/goodslist" tag="button">goto goods list</router-link>
-    <router-link to="/cart" tag="button">goto cart</router-link>
+    <!-- <img src="@/assets/logo.png"> -->
+    <!-- <h1>{{ msg }}</h1> -->
+    <!-- <img src="@/assets/logo.png" width="128" height="128" alt="goto goods list"> -->
+    <router-link to="/goodslist">
+      <img src="@/assets/logo.png" width="64" height="64" alt="goto goods list">
+    </router-link>
+    <router-link to="/cart">goto cart</router-link>
   </div>
 </template>
 
@@ -25,5 +29,6 @@ export default {
   width: 100%;
   height: 100px;
   background-color: yellowgreen;
+  display: flex;
 }
 </style>

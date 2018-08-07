@@ -1,7 +1,6 @@
 <template>
 <div id="app">
     <button v-if="false" @click="getGoodsList">load goods list</button>
-    <!-- <hr> -->
     <miheader class="miheader"></miheader>
     <!-- <hr> -->
     <router-view></router-view>
