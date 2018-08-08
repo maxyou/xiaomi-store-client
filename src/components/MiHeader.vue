@@ -10,7 +10,7 @@
             <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
         </router-link>
 
-        <el-button v-if="!logined" class="flex-items flex-login">login</el-button>
+        <el-button v-if="!logined" class="flex-items flex-login" @click="dialogFormVisible = true">login</el-button>
         <span v-else>
             <el-button class="flex-items flex-logout">logout</el-button>
             <el-button class="flex-items flex-name">name</el-button>
@@ -24,6 +24,21 @@
             </el-badge>
         </span>
 
+        <el-dialog title="please login:" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+                <el-form-item label="name" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="password" :label-width="formLabelWidth">
+                    <el-input v-model="form.pwd" auto-complete="off"></el-input>                    
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">cancel</el-button>
+                <el-button type="primary" @click="login">submit</el-button>
+            </div>
+        </el-dialog>
+
     </div>
 </div>
 </template>
@@ -36,9 +51,21 @@ export default {
     props: ['logined'],
     data() {
         return {
+            dialogFormVisible: false,
+            form: {
+                name: '',
+                pwd:''
+            },
+            formLabelWidth: '120px',
             // login: false,
             howManyInShopCart: 0,
             msg: 'this is Header'
+        }
+    },
+    methods:{
+        login(){
+            this.dialogFormVisible = false
+            console.log('name:' + this.form.name + ' pwd:' + this.form.pwd)
         }
     }
 }
