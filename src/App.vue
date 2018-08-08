@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <button v-if="false" @click="getGoodsList">load goods list</button>
-    <miheader v-bind:logined="logined" class="miheader"></miheader>
+    <miheader v-bind:logined="logined" v-on:iflogin="logined = $event" class="miheader"></miheader>
     <!-- <hr> -->
     <router-view></router-view>
     <hr>

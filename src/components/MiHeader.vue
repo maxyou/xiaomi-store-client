@@ -13,7 +13,7 @@
         <el-button v-if="!logined" class="flex-items flex-login" @click="dialogFormVisible = true">login</el-button>
         <span v-else>
             <el-button class="flex-items flex-logout">logout</el-button>
-            <el-button class="flex-items flex-name">name</el-button>
+            <el-button class="flex-items flex-name">{{userName}}</el-button>
 
             <el-badge :value="12" class="badge-item">
                 <router-link to="/cart" class="flex-items flex-cart" tag="span">
@@ -45,13 +45,14 @@
 
 <script>
 import "@/assets/icons/iconfont.js"
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
     name: 'MiHeader',
     props: ['logined'],
     data() {
         return {
+            userName:'',
             dialogFormVisible: false,
             form: {
                 name: '',
@@ -66,13 +67,23 @@ export default {
     methods: {
 
         login() {
-            axios.post("/users/login", {
+            this.dialogFormVisible = false
+
+            this.$http.post("/users/login", {
                 userName: this.form.name,
                 userPwd: this.form.pwd
             }).then((res) => {
                 console.log(JSON.stringify(res.data))
+
+                if (res.data.status == 0) {
+                    //login success
+                    this.$emit('iflogin', true)
+                    this.userName = res.data.result.userName
+                } else {
+                    alert('login failed')
+                }
+
             })
-            this.dialogFormVisible = false
             // console.log('name:' + this.form.name + ' pwd:' + this.form.pwd)
         }
     }
