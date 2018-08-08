@@ -1,26 +1,30 @@
 <template>
-<div class="flex-container">
+<div>
+    <!-- <h1>====={{ logined }}=====</h1> -->
+    <div class="flex-container">
 
-    <!-- <img src="@/assets/logo.png"> -->
-    <!-- <h1>{{ msg }}</h1> -->
-    <!-- <img src="@/assets/logo.png" width="128" height="128" alt="goto goods list"> -->
-    <router-link to="/goodslist" class="flex-items flex-logo">
-        <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
-    </router-link>
+        <!-- <img src="@/assets/logo.png"> -->
 
-    <el-button class="flex-items flex-login">login</el-button>
-    <el-button class="flex-items flex-logout">logout</el-button>
-
-    <el-button class="flex-items flex-name">name</el-button>
-
-    <el-badge :value="12" class="badge-item">
-        <router-link to="/cart" class="flex-items flex-cart" tag="span">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#mi-icon-gouwuche"></use>
-            </svg>
+        <!-- <img src="@/assets/logo.png" width="128" height="128" alt="goto goods list"> -->
+        <router-link to="/goodslist" class="flex-items flex-logo">
+            <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
         </router-link>
-    </el-badge>
 
+        <el-button v-if="!logined" class="flex-items flex-login">login</el-button>
+        <span v-else>
+            <el-button class="flex-items flex-logout">logout</el-button>
+            <el-button class="flex-items flex-name">name</el-button>
+
+            <el-badge :value="12" class="badge-item">
+                <router-link to="/cart" class="flex-items flex-cart" tag="span">
+                    <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#mi-icon-gouwuche"></use>
+                    </svg>
+                </router-link>
+            </el-badge>
+        </span>
+
+    </div>
 </div>
 </template>
 
@@ -29,9 +33,10 @@ import "@/assets/icons/iconfont.js"
 
 export default {
     name: 'MiHeader',
+    props: ['logined'],
     data() {
         return {
-            login: false,
+            // login: false,
             howManyInShopCart: 0,
             msg: 'this is Header'
         }

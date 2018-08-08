@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <button v-if="false" @click="getGoodsList">load goods list</button>
-    <miheader class="miheader"></miheader>
+    <miheader v-bind:logined="logined" class="miheader"></miheader>
     <!-- <hr> -->
     <router-view></router-view>
     <hr>
@@ -21,8 +21,9 @@ export default {
     },
     data() {
         return {
-            
+            logined: false
         }
+
     },
     methods: {
 
