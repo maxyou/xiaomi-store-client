@@ -30,7 +30,7 @@
                     <el-input v-model="form.name" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="password" :label-width="formLabelWidth">
-                    <el-input v-model="form.pwd" auto-complete="off"></el-input>                    
+                    <el-input v-model="form.pwd" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -45,6 +45,7 @@
 
 <script>
 import "@/assets/icons/iconfont.js"
+import axios from 'axios'
 
 export default {
     name: 'MiHeader',
@@ -54,7 +55,7 @@ export default {
             dialogFormVisible: false,
             form: {
                 name: '',
-                pwd:''
+                pwd: ''
             },
             formLabelWidth: '120px',
             // login: false,
@@ -62,10 +63,17 @@ export default {
             msg: 'this is Header'
         }
     },
-    methods:{
-        login(){
+    methods: {
+
+        login() {
+            axios.post("/users/login", {
+                userName: this.form.name,
+                userPwd: this.form.pwd
+            }).then((res) => {
+                console.log(JSON.stringify(res.data))
+            })
             this.dialogFormVisible = false
-            console.log('name:' + this.form.name + ' pwd:' + this.form.pwd)
+            // console.log('name:' + this.form.name + ' pwd:' + this.form.pwd)
         }
     }
 }
