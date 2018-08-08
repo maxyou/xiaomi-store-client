@@ -8,10 +8,10 @@
         <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
     </router-link>
 
-    <button class="flex-items flex-login">login</button>
-    <button class="flex-items flex-logout">logout</button>
+    <el-button class="flex-items flex-login">login</el-button>
+    <el-button class="flex-items flex-logout">logout</el-button>
 
-    <span class="flex-items flex-name">name</span>
+    <el-button class="flex-items flex-name">name</el-button>
 
     <el-badge :value="12" class="badge-item">
         <router-link to="/cart" class="flex-items flex-cart" tag="span">

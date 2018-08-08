@@ -20,7 +20,9 @@ export default {
         miheader: MiHeader
     },
     data() {
-        return {}
+        return {
+            
+        }
     },
     methods: {
 

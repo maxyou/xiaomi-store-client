@@ -1,7 +1,7 @@
 <template>
   <div class="cart-address">
     <h1>{{ msg }}</h1>
-    <router-link to="/cart/detail" tag="button">goto /cart/detail</router-link>
+    <router-link to="/cart/detail" tag="el-button">goto /cart/detail</router-link>
   </div>
 </template>
 
