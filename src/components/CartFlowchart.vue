@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="cart-flowchart">
     <h1>{{ msg }}</h1>
     <router-view/>
   </div>
@@ -19,5 +19,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.cart-flowchart{
+  background-color: coral;
+}
 </style>

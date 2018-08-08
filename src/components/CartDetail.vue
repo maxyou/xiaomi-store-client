@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="cart-detail">
     <h1>{{ msg }}</h1>
     <router-link to="/cart/completed" tag="button">goto /cart/completed</router-link>
   </div>
@@ -19,5 +19,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.cart-detail{
+  background-color: goldenrod;
+}
 </style>

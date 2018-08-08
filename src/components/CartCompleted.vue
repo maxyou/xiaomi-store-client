@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="cart-completed">
     <h1>{{ msg }}</h1>
         <router-link to="/goodslist" tag="button">goto /goodslist</router-link>
   </div>
@@ -19,5 +19,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.cart-completed{
+  background-color: hotpink;
+}
 </style>
