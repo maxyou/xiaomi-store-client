@@ -4,7 +4,7 @@
     <div class="sort-bar-header">
         <span>sort</span>
         <el-button>default</el-button>
-        <el-button>price</el-button>
+        <el-button @click="sortPriceUp=!sortPriceUp">price</el-button>
         <svg class="icon" v-if="sortPriceUp" aria-hidden="true">
                     <use xlink:href="#mi-icon-icon_down"></use>
                     </svg>
@@ -18,19 +18,18 @@
             <h2>price:</h2>
 
             <ul>
-                <li>all</li>
-                <li>0.00-100.00</li>
+                <li v-for="item in sortPriceLevel" :key="item.id" @click="currentPriceFilter = item">{{item.start}}-{{item.end}}</li>
+
+                <!-- <li>0.00-100.00</li>
                 <li>100.00-500.00</li>
                 <li>500.00-1000.00</li>
-                <li>1000.00-8000.00</li>
+                <li>1000.00-8000.00</li> -->
             </ul>
-
-
 
         </div>
         <div class="goods-list">
             <div class="flex-container">
-                <div class="flex-items" v-for="item in goodsdata" :key="item.id">
+                <div class="flex-items" v-for="item in filterAndSortGoodsList()" :key="item.id">
                     <div><img :src="getSrc(item.productImg)" alt=""></div>
 
                     <div>{{item.productName}}</div>
@@ -56,8 +55,31 @@ export default {
     },
     data() {
         return {
+            currentPriceFilter: {
+                start: 0.00,
+                end: 10000.00
+            },
+            sortPriceLevel: [
+                // {start:0, end:'all'},
+                {
+                    start: 0.00,
+                    end: 100.00
+                },
+                {
+                    start: 100.00,
+                    end: 500.00
+                },
+                {
+                    start: 500.00,
+                    end: 1000.00
+                },
+                {
+                    start: 1000.00,
+                    end: 8000.00
+                },
+            ],
             sortPriceUp: true,
-            goodsdata: '',
+            goodsdata: [],
             msg: 'this is goods list page'
         }
     },
@@ -78,6 +100,22 @@ export default {
                 this.goodsdata = res.data
                 console.log(JSON.stringify(res.data))
             })
+        },
+        filterAndSortGoodsList() {
+            //filter
+            var a = this.goodsdata.filter(
+                item =>
+                item.productPrice >= this.currentPriceFilter.start &&
+                item.productPrice <= this.currentPriceFilter.end
+            )
+            // console.log(a)
+            //sort
+            a.sort((a, b) =>
+                this.sortPriceUp ?
+                a.productPrice - b.productPrice :
+                b.productPrice - a.productPrice
+            )
+            return a;
         }
     }
 }
