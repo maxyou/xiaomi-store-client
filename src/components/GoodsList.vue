@@ -2,6 +2,12 @@
   <div class="goods-list">
     <h1>{{ msg }}</h1>
 
+    <div class="flex-container">
+      <div class="flex-items" v-for="item in goodsdata" :key="item.id">
+        {{item.productName}}
+      </div>
+    </div>
+
     <ul>
       <li v-for="item in goodsdata" :key="item.id">{{item}}</li>
     </ul>
@@ -43,6 +49,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.flex-container{
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.flex-items{
+  width:300px;
+  /* flex: 1; */
+  /* margin: auto; */
+  background-color: crimson;
+
+}
+
 .goods-list{
   background-color: aquamarine;
 }
