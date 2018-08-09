@@ -28,6 +28,9 @@ export default {
     methods: {
         setStateLogin(e){
             this.stateLogin = e;
+            if(!e){
+                this.$router.push({path: '/'})
+            }
         },
         getGoodsList() {
             axios.get("/goods/list", {
