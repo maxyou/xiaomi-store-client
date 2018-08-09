@@ -30,7 +30,8 @@
         <div class="goods-list">
             <div class="flex-container">
                 <div class="flex-items" v-for="item in filterAndSortGoodsList()" :key="item.id">
-                    <div><img :src="getSrc(item.productImg)" alt=""></div>
+                    <!-- <div><img :src="getSrc(item.productImg)" alt=""></div> -->
+                    <div><img :src="require('@/assets/goods/' + item.productImg)" alt=""></div>
 
                     <div>{{item.productName}}</div>
                     <div>${{item.productPrice}}</div>
