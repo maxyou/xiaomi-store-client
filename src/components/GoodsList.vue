@@ -4,7 +4,8 @@
 
     <div class="flex-container">
         <div class="flex-items" v-for="item in goodsdata" :key="item.id">
-            <div><img src="@/assets/goods/2.jpg" alt=""></div>
+            <!-- <div><img src="@/assets/goods/2.jpg" alt=""></div> -->
+            <div><img :src="getSrc(item.productImg)" alt=""></div>
 
             <div>{{item.productName}}</div>
             <div>${{item.productPrice}}</div>
@@ -36,6 +37,10 @@ export default {
         }
     },
     methods: {
+        getSrc(name){
+            var images = require.context('@/assets/goods/', false, /\.jpg$/)
+            return images('./' + name)
+        },
         getGoodsList() {
             axios.get("/goods/list", {
                 params: {
