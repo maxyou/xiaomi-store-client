@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <button v-if="false" @click="getGoodsList">load goods list</button>
-    <miheader v-bind:logined="logined" v-on:iflogin="logined = $event" class="miheader"></miheader>
+    <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader>
     <!-- <hr> -->
     <router-view></router-view>
     <hr>
@@ -21,12 +21,14 @@ export default {
     },
     data() {
         return {
-            logined: false
+            stateLogin: false
         }
 
     },
     methods: {
-
+        setStateLogin(e){
+            this.stateLogin = e;
+        },
         getGoodsList() {
             axios.get("/goods/list", {
                 params: {

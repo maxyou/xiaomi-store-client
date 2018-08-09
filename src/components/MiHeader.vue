@@ -10,9 +10,9 @@
             <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
         </router-link>
 
-        <el-button v-if="!logined" class="flex-items flex-login" @click="dialogFormVisible = true">login</el-button>
+        <el-button v-if="!stateLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button>
         <span v-else>
-            <el-button class="flex-items flex-logout">logout</el-button>
+            <el-button class="flex-items flex-logout" @click="logout">logout</el-button>
             <el-button class="flex-items flex-name">{{userName}}</el-button>
 
             <el-badge :value="12" class="badge-item">
@@ -49,10 +49,10 @@ import "@/assets/icons/iconfont.js"
 
 export default {
     name: 'MiHeader',
-    props: ['logined'],
+    props: ['stateLogin'],
     data() {
         return {
-            userName:'',
+            userName: '',
             dialogFormVisible: false,
             form: {
                 name: '',
@@ -65,7 +65,12 @@ export default {
         }
     },
     methods: {
-
+        logout() {
+            this.$emit('setStateLogin', false)
+        },
+        showLoginDialog() {
+            this.dialogFormVisible = true
+        },
         login() {
             this.dialogFormVisible = false
 
@@ -77,7 +82,7 @@ export default {
 
                 if (res.data.status == 0) {
                     //login success
-                    this.$emit('iflogin', true)
+                    this.$emit('setStateLogin', true)
                     this.userName = res.data.result.userName
                 } else {
                     alert('login failed')
