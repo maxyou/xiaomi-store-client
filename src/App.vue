@@ -1,12 +1,12 @@
 <template>
 <div id="app">
-    <h1>stateLogin:{{appState.stateLogin}}, cartList:{{appState.cartList}}</h1>
+    <!-- <h1>stateLogin:{{appState.stateLogin}}, cartList:{{appState.cartList}}</h1> -->
     <hr>
     <button v-if="false" @click="getGoodsList">load goods list</button>
     <!-- <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader> -->
     <miheader v-bind.sync="appState" class="miheader"></miheader>
     <!-- <hr> -->
-    <router-view v-bind.sync="appState"></router-view>
+    <router-view v-bind.sync="appState" v-on:cartChange="cartChange"></router-view>
     <hr>
 </div>
 </template>
@@ -26,7 +26,8 @@ export default {
         return {
             appState: {
                 stateLogin: false,
-                cartList:[]
+                cartList: [],
+                cartListLength: 0
             }
         }
 
@@ -35,8 +36,25 @@ export default {
         stateLogin: function (newVal, oldVal) {
             console.log('stateLogin changed: ' + this.stateLogin)
         }
+        // cartList: {
+        //     handler(newVal, oldVal) {
+
+        //         this.cartListLength = this.cartList.length
+        //         console.log('cartListLength changed: ' + this.cartListLength)
+
+        //     },
+        //     deep: true
+        // }
+        // cartList: function (newVal, oldVal) {
+        //     this.cartListLength = this.cartList.length
+        //     console.log('cartListLength changed: ' + this.cartListLength)
+        // }
     },
     methods: {
+        cartChange(){
+                this.appState.cartListLength = this.appState.cartList.length
+                console.log('cartListLength changed: ' + this.appState.cartListLength)
+        },
         setStateLogin(e) {
             this.stateLogin = e;
             if (!e) {

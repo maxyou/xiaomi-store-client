@@ -15,7 +15,7 @@
             <el-button class="flex-items flex-logout" @click="logout">logout</el-button>
             <el-button class="flex-items flex-name">{{userName}}</el-button>
 
-            <el-badge :value="12" class="badge-item">
+            <el-badge :value="cartListLength" class="badge-item">
                 <router-link to="/cart" class="flex-items flex-cart" tag="span">
                     <svg class="icon" aria-hidden="true">
                     <use xlink:href="#mi-icon-gouwuche"></use>
@@ -49,7 +49,7 @@ import "@/assets/icons/iconfont.js"
 
 export default {
     name: 'MiHeader',
-    props: ['stateLogin'],
+    props: ['stateLogin', 'cartListLength'],
     data() {
         return {
             userName: '',

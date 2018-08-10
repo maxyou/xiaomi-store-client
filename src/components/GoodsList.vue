@@ -92,6 +92,7 @@ export default {
     methods: {
         addToCart(item){
             this.$emit('update:cartList', this.cartList.concat(item))
+            this.$emit('cartChange')
             console.log('addToCart')
         },
         getSrc(name) {
