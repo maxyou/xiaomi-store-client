@@ -1,10 +1,10 @@
 <template>
 <div id="app">
-    <h1>stateLogin:{{stateLogin}}</h1>
+    <h1>stateLogin:{{appState.stateLogin}}</h1>
     <hr>
     <button v-if="false" @click="getGoodsList">load goods list</button>
     <!-- <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader> -->
-    <miheader :stateLogin.sync="stateLogin" class="miheader"></miheader>
+    <miheader v-bind.sync="appState" class="miheader"></miheader>
     <!-- <hr> -->
     <router-view></router-view>
     <hr>
@@ -24,7 +24,9 @@ export default {
     },
     data() {
         return {
-            stateLogin: false
+            appState: {
+                stateLogin: false
+            }
         }
 
     },
