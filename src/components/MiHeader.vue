@@ -66,7 +66,8 @@ export default {
     },
     methods: {
         logout() {
-            this.$emit('setStateLogin', false)
+            // this.$emit('setStateLogin', false)
+            this.$emit('update:stateLogin', false)
         },
         showLoginDialog() {
             this.dialogFormVisible = true
@@ -82,7 +83,9 @@ export default {
 
                 if (res.data.status == 0) {
                     //login success
-                    this.$emit('setStateLogin', true)
+                    // this.$emit('setStateLogin', true)
+                    this.$emit('update:stateLogin', true)
+                    console.log('update stateLogin:' + true)
                     this.userName = res.data.result.userName
                 } else {
                     alert('login failed')

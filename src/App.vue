@@ -1,7 +1,10 @@
 <template>
 <div id="app">
+    <h1>stateLogin:{{stateLogin}}</h1>
+    <hr>
     <button v-if="false" @click="getGoodsList">load goods list</button>
-    <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader>
+    <!-- <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader> -->
+    <miheader :stateLogin.sync="stateLogin" class="miheader"></miheader>
     <!-- <hr> -->
     <router-view></router-view>
     <hr>
@@ -25,11 +28,18 @@ export default {
         }
 
     },
+    watch: {
+        stateLogin: function (newVal, oldVal) {
+            console.log('stateLogin changed: ' + this.stateLogin)
+        }
+    },
     methods: {
-        setStateLogin(e){
+        setStateLogin(e) {
             this.stateLogin = e;
-            if(!e){
-                this.$router.push({path: '/'})
+            if (!e) {
+                this.$router.push({
+                    path: '/'
+                })
             }
         },
         getGoodsList() {
