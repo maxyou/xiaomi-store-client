@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1>{{ msg }}</h1>
+    <!-- <h1>{{ msg }}</h1> -->
     <div class="sort-bar-header">
         <span>sort</span>
         <el-button>default</el-button>
@@ -15,10 +15,10 @@
 
     <div>
         <div class="sort-bar-left">
-            <h2>price:</h2>
+            <h4>price:</h4>
 
-            <ul>
-                <li v-for="item in sortPriceLevel" :key="item.id" @click="currentPriceFilter = item">{{item.start}}-{{item.end}}</li>
+            <ul class="sort-bar-left-ul">
+                <li class="sort-bar-left-li" v-for="item in sortPriceLevel" :key="item.id" @click="currentPriceFilter = item"><a href="#">{{item.start}}-{{item.end}}</a></li>
 
                 <!-- <li>0.00-100.00</li>
                 <li>100.00-500.00</li>
@@ -156,6 +156,19 @@ export default {
     width: 15%;
     height: 500px;
     background-color: rgb(200, 255, 0);
+}
+.sort-bar-left-ul{
+    background-color: rgb(100, 155, 200);
+}
+.sort-bar-left-li{
+    list-style: none;
+    margin: 10px;
+}
+.sort-bar-left-li a:link{
+    text-decoration: none;
+}
+.sort-bar-left-li a:hover{
+    background-color: rgb(200, 155, 0);
 }
 
 .goods-list {
