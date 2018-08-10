@@ -1,12 +1,12 @@
 <template>
 <div id="app">
-    <h1>stateLogin:{{appState.stateLogin}}</h1>
+    <h1>stateLogin:{{appState.stateLogin}}, cartList:{{appState.cartList}}</h1>
     <hr>
     <button v-if="false" @click="getGoodsList">load goods list</button>
     <!-- <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader> -->
     <miheader v-bind.sync="appState" class="miheader"></miheader>
     <!-- <hr> -->
-    <router-view></router-view>
+    <router-view v-bind.sync="appState"></router-view>
     <hr>
 </div>
 </template>
@@ -25,7 +25,8 @@ export default {
     data() {
         return {
             appState: {
-                stateLogin: false
+                stateLogin: false,
+                cartList:[]
             }
         }
 

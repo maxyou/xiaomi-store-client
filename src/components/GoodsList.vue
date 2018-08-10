@@ -1,6 +1,6 @@
 <template>
 <div>
-    <!-- <h1>{{ msg }}</h1> -->
+    <h1>{{ msg }}</h1>
     <div class="sort-bar-header">
         <span>sort</span>
         <el-button>default</el-button>
@@ -37,7 +37,7 @@
                     <div>{{item.productName}}</div>
                     <div>${{item.productPrice}}</div>
                     <div>
-                        <el-button>add to cart</el-button>
+                        <el-button @click="addToCart(item)">add to cart</el-button>
                     </div>
                 </div>
             </div>
@@ -55,6 +55,10 @@ export default {
     mounted() {
         this.getGoodsList()
     },
+    props:[
+        'stateLogin',
+        'cartList'
+    ],
     data() {
         return {
             currentPriceFilter: {
@@ -86,6 +90,10 @@ export default {
         }
     },
     methods: {
+        addToCart(item){
+            this.$emit('update:cartList', this.cartList.concat(item))
+            console.log('addToCart')
+        },
         getSrc(name) {
             var images = require.context('@/assets/goods/', false, /\.jpg$/)
             return images('./' + name)
