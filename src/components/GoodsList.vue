@@ -43,7 +43,13 @@
                     </div>
                 </div>
             </div>
-
+            <el-dialog title="提示" :visible.sync="centerDialogVisible" width="400px" center>
+                <span>Have add to cart!</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="centerDialogVisible = false">go on goods list</el-button>
+                    <el-button type="primary" @click="centerDialogVisible = false">goto cart</el-button>
+                </span>
+            </el-dialog>
         </div>
     </div>
 
@@ -64,6 +70,7 @@ export default {
     ],
     data() {
         return {
+            centerDialogVisible: false,
             currentPriceFilter: {
                 start: 0.00,
                 end: 10000.00
@@ -113,6 +120,7 @@ export default {
             this.$emit('update:cartList', this.cartList.concat(item))
             this.$emit('cartChange')
             console.log('addToCart')
+            this.centerDialogVisible = true
         },
         getSrc(name) {
             var images = require.context('@/assets/goods/', false, /\.jpg$/)
