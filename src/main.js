@@ -23,10 +23,21 @@ Vue.config.productionTip = false
 
 var store = new Vuex.Store({
   state:{
-    count: 0
+    userLogin: false,
+    cartList:[]
   },
   mutations: {
-
+    setUserLogin(state, newState){
+      state.userLogin = newState
+    }
+  },
+  getters:{
+    getUserLogin: function(state){
+      return state.userLogin
+    },
+    cartListTotalAmount: function(state){
+      return state.cartList.length
+    }
   }
 })
 

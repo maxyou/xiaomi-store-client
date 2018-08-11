@@ -1,6 +1,7 @@
 <template>
 <div>
-    <!-- <h1>====={{ logined }}=====</h1> -->
+    <!-- <h1>====={{ $store.getters.getUserLogin }}=====</h1>
+    <h1>====={{ $store.state.userLogin }}=====</h1> -->
     <div class="flex-container">
 
         <!-- <img src="@/assets/logo.png"> -->
@@ -10,12 +11,14 @@
             <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
         </router-link>
 
-        <el-button v-if="!stateLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button>
+        <!-- <el-button v-if="!$store.state.userLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button> -->
+        <el-button v-if="!$store.getters.getUserLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button>
         <span v-else>
             <el-button class="flex-items flex-logout" @click="logout">logout</el-button>
             <el-button class="flex-items flex-name">{{userName}}</el-button>
 
-            <el-badge :value="cartListLength" class="badge-item">
+            <!-- <el-badge :value="cartListLength" class="badge-item"> -->
+            <el-badge :value="$store.getters.cartListTotalAmount" class="badge-item">
                 <router-link to="/cart" class="flex-items flex-cart" tag="span">
                     <svg class="icon" aria-hidden="true">
                     <use xlink:href="#mi-icon-gouwuche"></use>
@@ -49,7 +52,7 @@ import "@/assets/icons/iconfont.js"
 
 export default {
     name: 'MiHeader',
-    props: ['stateLogin', 'cartListLength'],
+    // props: ['stateLogin', 'cartListLength'],
     data() {
         return {
             userName: '',
@@ -67,7 +70,8 @@ export default {
     methods: {
         logout() {
             // this.$emit('setStateLogin', false)
-            this.$emit('update:stateLogin', false)
+            // this.$emit('update:stateLogin', false)
+            this.$store.commit('setUserLogin', false)
         },
         showLoginDialog() {
             this.dialogFormVisible = true
@@ -84,8 +88,9 @@ export default {
                 if (res.data.status == 0) {
                     //login success
                     // this.$emit('setStateLogin', true)
-                    this.$emit('update:stateLogin', true)
-                    console.log('update stateLogin:' + true)
+                    // this.$emit('update:stateLogin', true)
+                    this.$store.commit('setUserLogin', true)
+                    // console.log('update stateLogin:' + true)
                     this.userName = res.data.result.userName
                 } else {
                     alert('login failed')

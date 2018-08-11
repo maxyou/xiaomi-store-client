@@ -1,6 +1,10 @@
 <template>
   <div class="cart-list">
-    <h1>{{ msg }}</h1>
+    <h4>{{ msg }}</h4>
+
+
+
+    
     <router-link to="/cart/address" tag="el-button">goto /cart/address</router-link>
   </div>
 </template>

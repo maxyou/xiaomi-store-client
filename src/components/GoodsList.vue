@@ -64,10 +64,10 @@ export default {
     mounted() {
         this.getGoodsList()
     },
-    props: [
-        'stateLogin',
-        'cartList'
-    ],
+    // props: [
+    //     'stateLogin',
+    //     'cartList'
+    // ],
     data() {
         return {
             centerDialogVisible: false,
