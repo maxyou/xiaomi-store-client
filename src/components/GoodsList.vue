@@ -38,9 +38,12 @@
                     <div>${{item.productPrice}}</div>
                     <div>
                         <el-button @click="addToCart(item)">add to cart</el-button>
+                        <!-- <el-button @click="stateLogin?addToCart(item):open()">add to cart</el-button> -->
+                        <!-- <el-button @click="open">open</el-button> -->
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -55,7 +58,7 @@ export default {
     mounted() {
         this.getGoodsList()
     },
-    props:[
+    props: [
         'stateLogin',
         'cartList'
     ],
@@ -90,7 +93,23 @@ export default {
         }
     },
     methods: {
-        addToCart(item){
+        open() {
+            this.$alert('please login', 'Notice', {
+                confirmButtonText: 'OK',
+                callback: action => {
+                    // this.$message({
+                    //     type: 'info',
+                    //     message: `action: ${ action }`
+                    // });
+                }
+            });
+        },
+        addToCart(item) {
+            if (!this.stateLogin) {
+                this.open()
+                console.log('!stateLogin, open alert')
+                return
+            }
             this.$emit('update:cartList', this.cartList.concat(item))
             this.$emit('cartChange')
             console.log('addToCart')
@@ -157,17 +176,21 @@ export default {
     height: 500px;
     background-color: rgb(200, 255, 0);
 }
-.sort-bar-left-ul{
+
+.sort-bar-left-ul {
     background-color: rgb(100, 155, 200);
 }
-.sort-bar-left-li{
+
+.sort-bar-left-li {
     list-style: none;
     margin: 10px;
 }
-.sort-bar-left-li a:link{
+
+.sort-bar-left-li a:link {
     text-decoration: none;
 }
-.sort-bar-left-li a:hover{
+
+.sort-bar-left-li a:hover {
     background-color: rgb(200, 155, 0);
 }
 
