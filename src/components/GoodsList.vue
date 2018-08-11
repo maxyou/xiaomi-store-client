@@ -43,11 +43,11 @@
                     </div>
                 </div>
             </div>
-            <el-dialog title="提示" :visible.sync="centerDialogVisible" width="400px" center>
+            <el-dialog title="Notice" :visible.sync="centerDialogVisible" width="400px" center>
                 <span>Have add to cart!</span>
                 <span slot="footer" class="dialog-footer">
                     <el-button @click="centerDialogVisible = false">go on goods list</el-button>
-                    <el-button type="primary" @click="centerDialogVisible = false">goto cart</el-button>
+                    <el-button type="primary" @click="centerDialogVisible=false;gotoCart()">goto cart</el-button>
                 </span>
             </el-dialog>
         </div>
@@ -100,6 +100,9 @@ export default {
         }
     },
     methods: {
+        gotoCart(){
+            this.$router.push({path:'/cart'})
+        },
         open() {
             this.$alert('please login', 'Notice', {
                 confirmButtonText: 'OK',
