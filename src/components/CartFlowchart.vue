@@ -1,6 +1,6 @@
 <template>
   <div class="cart-flowchart">
-    <h1>{{ msg }}</h1>
+    <h4>{{ msg }}</h4>
     <router-view/>
   </div>
 </template>
