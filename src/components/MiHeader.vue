@@ -53,7 +53,9 @@
 <script>
 import "@/assets/icons/iconfont.js"
 // import axios from 'axios'
-import { mapGetters } from 'vuex'
+import {
+    mapGetters, mapMutations
+} from 'vuex'
 
 export default {
     name: 'MiHeader',
@@ -79,10 +81,14 @@ export default {
         })
     },
     methods: {
+        ...mapMutations([
+            'setUserLogin'
+        ]),
         logout() {
             // this.$emit('setStateLogin', false)
             // this.$emit('update:stateLogin', false)
-            this.$store.commit('setUserLogin', false)
+            // this.$store.commit('setUserLogin', false)
+            this.setUserLogin(false)
         },
         showLoginDialog() {
             this.dialogFormVisible = true
@@ -100,7 +106,8 @@ export default {
                     //login success
                     // this.$emit('setStateLogin', true)
                     // this.$emit('update:stateLogin', true)
-                    this.$store.commit('setUserLogin', true)
+                    // this.$store.commit('setUserLogin', true)
+                    this.setUserLogin(true)
                     // console.log('update stateLogin:' + true)
                     this.userName = res.data.result.userName
                 } else {
