@@ -58,6 +58,9 @@
 
 <script>
 import axios from 'axios'
+import {
+    mapGetters, mapMutations
+} from 'vuex'
 
 export default {
     name: 'GoodsList',
@@ -68,6 +71,11 @@ export default {
     //     'stateLogin',
     //     'cartList'
     // ],
+    computed: {
+        ...mapGetters({
+            userLogin: 'getUserLogin'
+        })
+    },
     data() {
         return {
             centerDialogVisible: false,
@@ -100,8 +108,13 @@ export default {
         }
     },
     methods: {
-        gotoCart(){
-            this.$router.push({path:'/cart'})
+        ...mapMutations([
+            'addToCartList'
+        ]),
+        gotoCart() {
+            this.$router.push({
+                path: '/cart'
+            })
         },
         open() {
             this.$alert('please login', 'Notice', {
@@ -115,13 +128,14 @@ export default {
             });
         },
         addToCart(item) {
-            if (!this.stateLogin) {
+            if (!this.userLogin) {
                 this.open()
                 console.log('!stateLogin, open alert')
                 return
             }
-            this.$emit('update:cartList', this.cartList.concat(item))
-            this.$emit('cartChange')
+            // this.$emit('update:cartList', this.cartList.concat(item))
+            // this.$emit('cartChange')
+            this.addToCartList(item)
             console.log('addToCart')
             this.centerDialogVisible = true
         },

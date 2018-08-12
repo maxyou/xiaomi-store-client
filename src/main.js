@@ -29,6 +29,22 @@ var store = new Vuex.Store({
   mutations: {
     setUserLogin(state, newState){
       state.userLogin = newState
+    },
+    addToCartList(state, newItem){
+      var found = state.cartList.some(function(item, index, array){
+        if(item.productId == newItem.productId){
+          
+          item.amount++
+          array.splice(index, 1, {...item})
+
+          return true
+        }
+        return false
+      })
+      if(!found){
+        newItem.amount = 1
+        state.cartList.push(newItem)
+      }
     }
   },
   getters:{
@@ -36,7 +52,11 @@ var store = new Vuex.Store({
       return state.userLogin
     },
     cartListTotalAmount: function(state){
-      return state.cartList.length
+      var totalAmount = 0
+      state.cartList.forEach(function(item, index, array){
+        totalAmount += item.amount
+      })
+      return totalAmount
     }
   }
 })

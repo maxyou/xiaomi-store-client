@@ -14,13 +14,15 @@
         <div class="flex-items flex-space"></div>
 
         <!-- <el-button v-if="!$store.state.userLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button> -->
-        <el-button v-if="!$store.getters.getUserLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button>
+        <!-- <el-button v-if="!$store.getters.getUserLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button> -->
+        <el-button v-if="!userLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button>
         <span v-else>
             <el-button class="flex-items flex-logout" @click="logout">logout</el-button>
             <el-button class="flex-items flex-name">{{userName}}</el-button>
 
             <!-- <el-badge :value="cartListLength" class="badge-item"> -->
-            <el-badge :value="$store.getters.cartListTotalAmount" class="badge-item">
+            <!-- <el-badge :value="$store.getters.cartListTotalAmount" class="badge-item"> -->
+            <el-badge :value="cartListTotalAmount" class="badge-item">
                 <router-link to="/cart" class="flex-items flex-cart" tag="span">
                     <svg class="icon" aria-hidden="true">
                     <use xlink:href="#mi-icon-gouwuche"></use>
@@ -51,6 +53,7 @@
 <script>
 import "@/assets/icons/iconfont.js"
 // import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
     name: 'MiHeader',
@@ -68,6 +71,12 @@ export default {
             howManyInShopCart: 0,
             msg: 'this is Header'
         }
+    },
+    computed: {
+        ...mapGetters({
+            userLogin: 'getUserLogin',
+            cartListTotalAmount: 'cartListTotalAmount'
+        })
     },
     methods: {
         logout() {
@@ -134,10 +143,12 @@ export default {
     flex: 0;
     margin: 10px;
 }
+
 .flex-space {
     flex: 1;
     margin: 10px;
 }
+
 .flex-login {
     flex: 0;
     margin: 10px;

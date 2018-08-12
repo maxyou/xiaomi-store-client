@@ -16,9 +16,7 @@
 <script>
 import MiHeader from './components/MiHeader.vue'
 import axios from 'axios'
-import {
-    mapGetters
-} from 'vuex'
+import { mapGetters } from 'vuex'
 
 // axios.defaults.baseURL = 'http://hotemotion.fun:3389';
 
