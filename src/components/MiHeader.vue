@@ -11,6 +11,8 @@
             <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
         </router-link>
 
+        <div class="flex-items flex-space"></div>
+
         <!-- <el-button v-if="!$store.state.userLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button> -->
         <el-button v-if="!$store.getters.getUserLogin" class="flex-items flex-login" @click="showLoginDialog">login</el-button>
         <span v-else>
@@ -129,10 +131,13 @@ export default {
 }
 
 .flex-logo {
+    flex: 0;
+    margin: 10px;
+}
+.flex-space {
     flex: 1;
     margin: 10px;
 }
-
 .flex-login {
     flex: 0;
     margin: 10px;
