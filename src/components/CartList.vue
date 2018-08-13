@@ -1,7 +1,26 @@
 <template>
 <div class="cart-list">
     <h4>{{ msg }}</h4>
-    <el-table ref="multipleTable" :data="cartList" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+
+    <ul class="cart-item-ul">
+        <li v-for="item in cartList" :key="item.id" class="cart-item-li">
+            <div class="cart-item-container">
+
+                <div class="cart-item cart-item-select">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#mi-icon-duoxuankuang"></use>                
+                    </svg>
+                </div>
+                <div class="cart-item cart-item-img"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
+                <div class="cart-item cart-item-name">{{item.productName}}</div>
+                <div class="cart-item cart-item-price">{{item.productPrice}}</div>
+                <div class="cart-item cart-item-amount">{{item.amount}}</div>
+                <div class="cart-item cart-item-total">{{parseFloat(item.productPrice) * item.amount}}</div>
+            </div>
+        </li>
+    </ul>
+
+    <!-- <el-table ref="multipleTable" :data="cartList" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column label="pic" width="120">
             <template slot-scope="scope"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + scope.row.productImg" alt=""></template>
@@ -20,7 +39,7 @@
             <template slot-scope="scope">{{ parseFloat(scope.row.productPrice) * scope.row.amount }}</template>
         </el-table-column>
 
-    </el-table>
+    </el-table> -->
 
     <router-link to="/cart/address" tag="el-button">goto /cart/address</router-link>
 </div>
@@ -65,11 +84,11 @@ export default {
 }
 
 .goods-pic {
-    width: 64px;
-    height: 64px;
+    width: 45px;
+    height: 45px;
 }
 
-.adjust-amount-container {
+/* .adjust-amount-container {
     display: flex;
     width: 60px;
     background-color: coral;
@@ -80,5 +99,64 @@ export default {
     display: inline;
     border: 1px solid #7b797b;
     padding: 3px;
+} */
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
 }
+.cart-item-ul {
+    background-color: aquamarine;
+    -webkit-padding-start: 0%;
+    width: 100%;
+    /* height: 50px; */
+    list-style: none;
+}
+.cart-item-li {
+    margin: 0px;
+    background-color: cornflowerblue;
+    width: 100%;
+    height: 50px;
+    list-style: none;
+}
+
+.cart-item-container {
+    background-color: darksalmon;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    height: 50px;
+}
+
+.cart-item {
+    border:1px solid #7b797b;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-item-select{
+    width: 50px;    
+}
+.cart-item-img{
+    width: 50px;    
+}
+.cart-item-name{
+    width: 250px;    
+}
+.cart-item-price{
+    width: 50px;    
+}
+.cart-item-amount{
+    width: 50px;    
+}
+.cart-item-total{
+    width: 50px;    
+}
+
 </style>
