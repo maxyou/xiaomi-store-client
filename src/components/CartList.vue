@@ -6,13 +6,15 @@
         <el-table-column label="pic" width="120">
             <template slot-scope="scope"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + scope.row.productImg" alt=""></template>
         </el-table-column>
-        <el-table-column prop="amount" label="amount" width="120"><span>hahaha</span></el-table-column>
         <el-table-column prop="productName" label="name" width="120"></el-table-column>
+        <el-table-column prop="productPrice" label="price" width="120"></el-table-column>
         <el-table-column prop="amount" label="amount" width="120">
-          <template slot-scope="scope"><h3>this is h3</h3>{{ scope.row.date }}</template>
+          <template slot-scope="scope">{{ scope.row.amount }}</template>
         </el-table-column>
-        <el-table-column prop="amount" label="amount" width="120"></el-table-column>
-        <el-table-column prop="productPrice" label="price" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="amount" label="total" width="120">
+          <template slot-scope="scope">{{ parseFloat(scope.row.productPrice) * scope.row.amount }}</template>
+        </el-table-column>
+        
     </el-table>
 
     <router-link to="/cart/address" tag="el-button">goto /cart/address</router-link>
