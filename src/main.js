@@ -51,6 +51,9 @@ var store = new Vuex.Store({
     getUserLogin: function(state){
       return state.userLogin
     },
+    getCartList: function(state){
+      return state.cartList
+    },
     cartListTotalAmount: function(state){
       var totalAmount = 0
       state.cartList.forEach(function(item, index, array){
