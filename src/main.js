@@ -22,41 +22,57 @@ Vue.config.productionTip = false
 
 
 var store = new Vuex.Store({
-  state:{
+  state: {
     userLogin: false,
-    cartList:[]
+    cartList: []
   },
   mutations: {
-    setUserLogin(state, newState){
+    setUserLogin(state, newState) {
       state.userLogin = newState
     },
-    addToCartList(state, newItem){
-      var found = state.cartList.some(function(item, index, array){
-        if(item.productId == newItem.productId){
-          
+    removeProduct(state, willRemove) {
+      state.cartList.forEach(function (item, index, array) {
+        if (item.productId == willRemove.productId) {
+          array.splice(index, 1)
+        }
+      })
+    },
+    adjustProductAmount(state, adjust) {
+      state.cartList.forEach(function (item, index, array) {
+        if (item.productId == adjust.productId) {
+          item.amount = adjust.amount
+          array.splice(index, 1, { ...item })
+        }
+      })
+    },
+    addToCartList(state, newItem) {
+      var found = state.cartList.some(function (item, index, array) {
+        if (item.productId == newItem.productId) {
+
           item.amount++
-          array.splice(index, 1, {...item})
+            array.splice(index, 1, { ...item
+            })
 
           return true
         }
         return false
       })
-      if(!found){
+      if (!found) {
         newItem.amount = 1
         state.cartList.push(newItem)
       }
     }
   },
-  getters:{
-    getUserLogin: function(state){
+  getters: {
+    getUserLogin: function (state) {
       return state.userLogin
     },
-    getCartList: function(state){
+    getCartList: function (state) {
       return state.cartList
     },
-    cartListTotalAmount: function(state){
+    cartListTotalAmount: function (state) {
       var totalAmount = 0
-      state.cartList.forEach(function(item, index, array){
+      state.cartList.forEach(function (item, index, array) {
         totalAmount += item.amount
       })
       return totalAmount
@@ -69,6 +85,8 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })

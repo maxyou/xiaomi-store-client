@@ -9,12 +9,17 @@
         <el-table-column prop="productName" label="name" width="120"></el-table-column>
         <el-table-column prop="productPrice" label="price" width="120"></el-table-column>
         <el-table-column prop="amount" label="amount" width="120">
-          <template slot-scope="scope">{{ scope.row.amount }}</template>
+            <template slot-scope="scope">
+                <div class="adjust-amount-container">
+                    <div class="adjust-amount">-</div>{{ scope.row.amount }}
+                    <div class="adjust-amount">+</div>
+                </div>
+            </template>
         </el-table-column>
         <el-table-column prop="amount" label="total" width="120">
-          <template slot-scope="scope">{{ parseFloat(scope.row.productPrice) * scope.row.amount }}</template>
+            <template slot-scope="scope">{{ parseFloat(scope.row.productPrice) * scope.row.amount }}</template>
         </el-table-column>
-        
+
     </el-table>
 
     <router-link to="/cart/address" tag="el-button">goto /cart/address</router-link>
@@ -30,6 +35,10 @@ import {
 export default {
     name: 'Cart',
     methods: {
+        ...mapMutations([
+            'removeProduct',
+            'adjustProductAmount'
+        ]),
         handleSelectionChange(val) {
             console.log(JSON.stringify(val))
         }
@@ -43,35 +52,6 @@ export default {
     },
     data() {
         return {
-            tableData3: [{
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-02',
-                name: '王da虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-08',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-06',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-07',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }],
             msg: 'this is cart list'
         }
     }
@@ -83,8 +63,22 @@ export default {
 .cart-list {
     background-color: darkgoldenrod;
 }
-.goods-pic{
-  width: 64px;
-  height: 64px;
+
+.goods-pic {
+    width: 64px;
+    height: 64px;
+}
+
+.adjust-amount-container {
+    display: flex;
+    width: 60px;
+    background-color: coral;
+    justify-content: space-between;
+}
+
+.adjust-amount {
+    display: inline;
+    border: 1px solid #7b797b;
+    padding: 3px;
 }
 </style>
