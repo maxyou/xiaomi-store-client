@@ -89,9 +89,23 @@ export default {
             })
         },
         minusAmount(minused) {
-
+            this.adjustAmount(minused, -1)
         },
         plusAmount(plused) {
+            this.adjustAmount(plused, 1)
+        },
+        adjustAmount(adjusted, change) {
+            this.cartList.some(function (item, index, array) {
+                if (item.productId == adjusted.productId) {
+                    item.amount += change
+                    if (item.amount == 0) {
+                        item.amount = 1
+                    }
+                    array.splice(index, 1, { ...item
+                    })
+                    return true
+                }
+            })
 
         }
     },
