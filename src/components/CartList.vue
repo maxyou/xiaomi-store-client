@@ -6,9 +6,10 @@
         <li v-for="item in cartList" :key="item.id" class="cart-item-li">
             <div class="cart-item-container">
 
-                <div class="cart-item cart-item-select">
+                <div class="cart-item cart-item-select" @click="toggleSelect(item)">
                     <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#mi-icon-duoxuankuang"></use>                
+                        <use v-if="!item.select || item.select == undefined" xlink:href="#mi-icon-duoxuankuang"></use>                
+                        <use v-else xlink:href="#mi-icon-duoxuankuang1"></use>                
                     </svg>
                 </div>
                 <div class="cart-item cart-item-img"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
@@ -56,10 +57,25 @@ export default {
     methods: {
         ...mapMutations([
             'removeProduct',
-            'adjustProductAmount'
+            'setProductAmount',
+            'setProductSelect'
         ]),
-        handleSelectionChange(val) {
-            console.log(JSON.stringify(val))
+        // handleSelectionChange(val) {
+        //     console.log(JSON.stringify(val))
+        // }
+        toggleSelect(toggled) {
+            this.cartList.forEach(function (item, index, array) {
+                if (item.productId == toggled.productId) {
+                    console.log('select:'+toggled.select)
+                    if(!item.select || item.select == undefined){
+                        item.select = true
+                    }else{
+                        item.select = false
+                    }
+                    // item.select = toggled.select
+                    array.splice(index, 1, { ...item })
+                }
+            })
         }
     },
     computed: {
@@ -108,6 +124,7 @@ export default {
     fill: currentColor;
     overflow: hidden;
 }
+
 .cart-item-ul {
     background-color: aquamarine;
     -webkit-padding-start: 0%;
@@ -115,6 +132,7 @@ export default {
     /* height: 50px; */
     list-style: none;
 }
+
 .cart-item-li {
     margin: 0px;
     background-color: cornflowerblue;
@@ -124,9 +142,9 @@ export default {
 }
 
 .cart-item-container {
-    background-color: darksalmon;    
+    background-color: darksalmon;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
     width: 90%;
@@ -134,29 +152,34 @@ export default {
 }
 
 .cart-item {
-    border:1px solid #7b797b;
+    border: 1px solid #7b797b;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.cart-item-select{
-    width: 50px;    
-}
-.cart-item-img{
-    width: 50px;    
-}
-.cart-item-name{
-    width: 250px;    
-}
-.cart-item-price{
-    width: 50px;    
-}
-.cart-item-amount{
-    width: 50px;    
-}
-.cart-item-total{
-    width: 50px;    
+
+.cart-item-select {
+    width: 50px;
 }
 
+.cart-item-img {
+    width: 50px;
+}
+
+.cart-item-name {
+    width: 250px;
+}
+
+.cart-item-price {
+    width: 50px;
+}
+
+.cart-item-amount {
+    width: 50px;
+}
+
+.cart-item-total {
+    width: 50px;
+}
 </style>

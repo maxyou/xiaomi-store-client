@@ -37,10 +37,18 @@ var store = new Vuex.Store({
         }
       })
     },
-    adjustProductAmount(state, adjust) {
+    setProductSelect(state, updated) {
       state.cartList.forEach(function (item, index, array) {
-        if (item.productId == adjust.productId) {
-          item.amount = adjust.amount
+        if (item.productId == updated.productId) {
+          item.select = updated.select
+          array.splice(index, 1, { ...item })
+        }
+      })
+    },
+    setProductAmount(state, updated) {
+      state.cartList.forEach(function (item, index, array) {
+        if (item.productId == updated.productId) {
+          item.amount = updated.amount
           array.splice(index, 1, { ...item })
         }
       })
