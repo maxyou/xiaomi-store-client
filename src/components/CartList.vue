@@ -17,6 +17,7 @@
             <div class="cart-item cart-item-amount">amount</div>
             <div class="cart-item cart-item-amount-plus"> </div>
             <div class="cart-item cart-item-total">total</div>
+            <div class="cart-item cart-item-del">del </div>
         </div>
         <li v-for="item in cartList" :key="item.id" class="cart-item-li">
             <div class="cart-item-container">
@@ -42,6 +43,11 @@
                     </svg>
                 </div>
                 <div class="cart-item cart-item-total">RMB {{parseFloat(item.productPrice) * item.amount}}</div>
+                <div class="cart-item cart-item-del" @click="del(item)">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#mi-icon-del"></use>                
+                    </svg>
+                </div>
             </div>
         </li>
     </ul>
@@ -88,6 +94,17 @@ export default {
         // handleSelectionChange(val) {
         //     console.log(JSON.stringify(val))
         // }
+        del(willDel){
+            this.cartList.some(function (item, index, array) {
+                if (item.productId == willDel.productId) {
+                    array.splice(index, 1)
+                }
+            })
+
+            this.selectAll = this.cartList.every(function (item, index, array) {
+                return item.select
+            })
+        },
         toggleSelectAll() {
             this.selectAll = !this.selectAll
             var sa = this.selectAll
@@ -253,5 +270,8 @@ export default {
 
 .cart-item-total {
     width: 100px;
+}
+.cart-item-del {
+    width: 50px;
 }
 </style>
