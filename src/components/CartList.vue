@@ -3,6 +3,21 @@
     <h4>{{ msg }}</h4>
 
     <ul class="cart-item-ul">
+        <div class="cart-item-container">
+            <div class="cart-item cart-item-select" @click="toggleSelectAll()">
+                <svg class="icon" aria-hidden="true">
+                        <use v-if="!selectAll" xlink:href="#mi-icon-duoxuankuang"></use>                
+                        <use v-else xlink:href="#mi-icon-duoxuankuang1"></use>                
+                    </svg>
+            </div>
+            <div class="cart-item cart-item-img">pic</div>
+            <div class="cart-item cart-item-name">name</div>
+            <div class="cart-item cart-item-price">price</div>
+            <div class="cart-item cart-item-amount-minus"> </div>
+            <div class="cart-item cart-item-amount">amount</div>
+            <div class="cart-item cart-item-amount-plus"> </div>
+            <div class="cart-item cart-item-total">total</div>
+        </div>
         <li v-for="item in cartList" :key="item.id" class="cart-item-li">
             <div class="cart-item-container">
 
@@ -14,7 +29,7 @@
                 </div>
                 <div class="cart-item cart-item-img"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
                 <div class="cart-item cart-item-name">{{item.productName}}</div>
-                <div class="cart-item cart-item-price">{{item.productPrice}}</div>
+                <div class="cart-item cart-item-price">RMB {{item.productPrice}}</div>
                 <div class="cart-item cart-item-amount-minus" @click="minusAmount(item)">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#mi-icon-minus-circle"></use>                
@@ -26,7 +41,7 @@
                         <use xlink:href="#mi-icon-plus-circle"></use>                
                     </svg>
                 </div>
-                <div class="cart-item cart-item-total">{{parseFloat(item.productPrice) * item.amount}}</div>
+                <div class="cart-item cart-item-total">RMB {{parseFloat(item.productPrice) * item.amount}}</div>
             </div>
         </li>
     </ul>
@@ -73,6 +88,13 @@ export default {
         // handleSelectionChange(val) {
         //     console.log(JSON.stringify(val))
         // }
+        toggleSelectAll() {
+            this.selectAll = !this.selectAll
+            var sa = this.selectAll
+            this.cartList.forEach(function (item, index, array) {
+                item.select = sa
+            })
+        },
         toggleSelect(toggled) {
             this.cartList.forEach(function (item, index, array) {
                 if (item.productId == toggled.productId) {
@@ -87,6 +109,11 @@ export default {
                     })
                 }
             })
+
+            this.selectAll = this.cartList.every(function (item, index, array) {
+                return item.select
+            })
+            console.log('selectAll:' + this.selectAll)
         },
         minusAmount(minused) {
             this.adjustAmount(minused, -1)
@@ -118,6 +145,7 @@ export default {
     },
     data() {
         return {
+            selectAll: false,
             msg: 'this is cart list'
         }
     }
@@ -204,7 +232,7 @@ export default {
 }
 
 .cart-item-price {
-    width: 50px;
+    width: 100px;
 }
 
 .cart-item-amount-minus {
@@ -224,6 +252,6 @@ export default {
 }
 
 .cart-item-total {
-    width: 50px;
+    width: 100px;
 }
 </style>
