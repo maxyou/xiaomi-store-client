@@ -15,7 +15,17 @@
                 <div class="cart-item cart-item-img"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
                 <div class="cart-item cart-item-name">{{item.productName}}</div>
                 <div class="cart-item cart-item-price">{{item.productPrice}}</div>
+                <div class="cart-item cart-item-amount-minus" @click="minusAmount(item)">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#mi-icon-minus-circle"></use>                
+                    </svg>
+                </div>
                 <div class="cart-item cart-item-amount">{{item.amount}}</div>
+                <div class="cart-item cart-item-amount-plus" @click="plusAmount(item)">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#mi-icon-plus-circle"></use>                
+                    </svg>
+                </div>
                 <div class="cart-item cart-item-total">{{parseFloat(item.productPrice) * item.amount}}</div>
             </div>
         </li>
@@ -66,16 +76,23 @@ export default {
         toggleSelect(toggled) {
             this.cartList.forEach(function (item, index, array) {
                 if (item.productId == toggled.productId) {
-                    console.log('select:'+toggled.select)
-                    if(!item.select || item.select == undefined){
+                    console.log('select:' + toggled.select)
+                    if (!item.select || item.select == undefined) {
                         item.select = true
-                    }else{
+                    } else {
                         item.select = false
                     }
                     // item.select = toggled.select
-                    array.splice(index, 1, { ...item })
+                    array.splice(index, 1, { ...item
+                    })
                 }
             })
+        },
+        minusAmount(minused) {
+
+        },
+        plusAmount(plused) {
+
         }
     },
     computed: {
@@ -137,7 +154,7 @@ export default {
     margin: 0px;
     background-color: cornflowerblue;
     width: 100%;
-    height: 50px;
+    height: 65px;
     list-style: none;
 }
 
@@ -146,13 +163,14 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 2px auto;
+    /* padding: 5px; */
     width: 90%;
-    height: 50px;
+    height: 60px;
 }
 
 .cart-item {
-    border: 1px solid #7b797b;
+    /* border: 1px solid #7b797b; */
     height: 50px;
     display: flex;
     justify-content: center;
@@ -175,8 +193,20 @@ export default {
     width: 50px;
 }
 
+.cart-item-amount-minus {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
 .cart-item-amount {
     width: 50px;
+}
+
+.cart-item-amount-plus {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
 }
 
 .cart-item-total {
