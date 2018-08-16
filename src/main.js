@@ -64,7 +64,7 @@ var store = new Vuex.Store({
     }
   },
   actions: {
-    syncCartList(context, newItem) {
+    add2ServerCartList(context, newItem) {
 
       return new Promise(
         (resolve, reject) => {
@@ -92,7 +92,7 @@ var store = new Vuex.Store({
       commit
     }, newItem) {
 
-      return dispatch('syncCartList', newItem).then(
+      return dispatch('add2ServerCartList', newItem).then(
         () => {
           axios.get("/users/carlist", {
             headers: {
