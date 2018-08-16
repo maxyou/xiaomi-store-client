@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import {
     mapGetters, mapMutations, mapActions
 } from 'vuex'
@@ -144,7 +143,7 @@ export default {
             return images('./' + name)
         },
         getGoodsList() {
-            axios.get("/goods/list", {
+            this.$http.get("/goods/list", {
                 params: {
                     page: 0,
                     pageSize: 8,

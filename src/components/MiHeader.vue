@@ -70,7 +70,7 @@ export default {
             },
             formLabelWidth: '120px',
             // login: false,
-            howManyInShopCart: 0,
+            // howManyInShopCart: 0,
             msg: 'this is Header'
         }
     },
