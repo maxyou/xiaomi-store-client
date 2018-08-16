@@ -36,13 +36,13 @@
                         <use xlink:href="#mi-icon-minus-circle"></use>                
                     </svg>
                 </div>
-                <div class="cart-item cart-item-amount">{{item.amount}}</div>
+                <div class="cart-item cart-item-amount">{{item.productNum}}</div>
                 <div class="cart-item cart-item-amount-plus" @click="plusAmount(item)">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#mi-icon-plus-circle"></use>                
                     </svg>
                 </div>
-                <div class="cart-item cart-item-total">RMB {{parseFloat(item.productPrice) * item.amount}}</div>
+                <div class="cart-item cart-item-total">RMB {{parseFloat(item.salePrice) * item.productNum}}</div>
                 <div class="cart-item cart-item-del" @click="del(item)">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#mi-icon-del"></use>                
@@ -141,9 +141,9 @@ export default {
         adjustAmount(adjusted, change) {
             this.cartList.some(function (item, index, array) {
                 if (item.productId == adjusted.productId) {
-                    item.amount += change
-                    if (item.amount == 0) {
-                        item.amount = 1
+                    item.productNum += change
+                    if (item.productNum == 0) {
+                        item.productNum = 1
                     }
                     array.splice(index, 1, { ...item
                     })

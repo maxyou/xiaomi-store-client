@@ -56,7 +56,7 @@ var store = new Vuex.Store({
     setProductAmount(state, updated) {
       state.cartList.forEach(function (item, index, array) {
         if (item.productId == updated.productId) {
-          item.amount = updated.amount
+          item.productNum = updated.productNum
           array.splice(index, 1, { ...item
           })
         }
