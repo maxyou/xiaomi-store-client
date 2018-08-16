@@ -64,10 +64,30 @@ var store = new Vuex.Store({
     }
   },
   actions: {
-    add2ServerCartList(context, newItem) {
+    
+    getCartListFromServer({
+      dispatch,
+      commit
+    }) {
+      axios.get("/users/carlist", {
+        headers: {
+          Cookie: 'userId=' + this.userName
+        }
+      }).then((res) => {
+        console.log(JSON.stringify(res.data))
+        commit('setCartList', res.data.result)
+      })
 
-      return new Promise(
+    },
+
+    addToCartList({
+      dispatch,
+      commit
+    }, newItem) {
+
+      new Promise(
         (resolve, reject) => {
+
           axios.post("/goods/addcar", {
             productId: newItem.productId,
             headers: {
@@ -77,33 +97,15 @@ var store = new Vuex.Store({
             console.log(JSON.stringify('res.data:' + res.data))
             if (res.data.status == '0') {
               console.log('res.data.status==0')
-
               resolve()
-
             }
           })
 
         }
-      )
+      ).then(() => {
+        dispatch('getCartListFromServer')
+      })
 
-    },
-    addToCartList({
-      dispatch,
-      commit
-    }, newItem) {
-
-      return dispatch('add2ServerCartList', newItem).then(
-        () => {
-          axios.get("/users/carlist", {
-            headers: {
-              Cookie: 'userId=' + this.userName
-            }
-          }).then((res) => {
-            console.log(JSON.stringify(res.data))
-            commit('setCartList', res.data.result)
-          })
-        }
-      )
     }
   },
   getters: {
