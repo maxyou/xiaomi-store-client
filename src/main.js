@@ -34,6 +34,9 @@ var store = new Vuex.Store({
     setUserName(state, name) {
       state.userName = name
     },
+    setCartList(state, list) {
+      state.cartList = list
+    },
     removeProduct(state, willRemove) {
       state.cartList.forEach(function (item, index, array) {
         if (item.productId == willRemove.productId) {
@@ -45,7 +48,8 @@ var store = new Vuex.Store({
       state.cartList.forEach(function (item, index, array) {
         if (item.productId == updated.productId) {
           item.select = updated.select
-          array.splice(index, 1, { ...item })
+          array.splice(index, 1, { ...item
+          })
         }
       })
     },
@@ -53,37 +57,64 @@ var store = new Vuex.Store({
       state.cartList.forEach(function (item, index, array) {
         if (item.productId == updated.productId) {
           item.amount = updated.amount
-          array.splice(index, 1, { ...item })
+          array.splice(index, 1, { ...item
+          })
         }
       })
-    },
-    addToCartList(state, newItem) {
-      var found = state.cartList.some(function (item, index, array) {
-        if (item.productId == newItem.productId) {
-
-          item.amount++
-            array.splice(index, 1, { ...item
-            })
-
-          return true
-        }
-        return false
-      })
-      if (!found) {
-        newItem.amount = 1
-        state.cartList.push(newItem)
-      }
-    },
-    syncCartList(){
-      axios.get("/carlist", {
-        headers: {
-            Cookie: 'userId='+this.userName
-        }
-    }).then((res) => {
-        
-        console.log(JSON.stringify(res.data))
-    })
     }
+  },
+  actions: {
+    addToCartList({
+      commit,
+      state
+    }, newItem) {
+      axios.post("/goods/addcar", {
+        productId: newItem.productId,
+        headers: {
+          Cookie: 'userId=' + this.userName
+        }
+      }).then((res) => {
+        console.log(JSON.stringify('res.data:' + res.data))
+        if (res.data.status == '0') {
+          console.log('res.data.status==0')
+          axios.get("/users/carlist", {
+            headers: {
+              Cookie: 'userId=' + this.userName
+            }
+          }).then((res) => {
+            console.log(JSON.stringify(res.data))
+            commit('setCartList', res.data.result)
+          })
+        }
+      })
+      // var found = state.cartList.some(function (item, index, array) {
+      //   if (item.productId == newItem.productId) {
+
+      //     item.amount++
+      //       array.splice(index, 1, { ...item
+      //       })
+
+      //     return true
+      //   }
+      //   return false
+      // })
+      // if (!found) {
+      //   newItem.amount = 1
+      //   state.cartList.push(newItem)
+      // }
+    },
+    // syncCartList() {
+    //   axios.get("/carlist", {
+    //     headers: {
+    //       Cookie: 'userId=' + this.userName
+    //     }
+    //   }).then((res) => {
+    //     console.log(JSON.stringify(res.data))
+    //     commit('setCartList', {
+    //       list: res.data
+    //     })
+    //   })
+    // }
   },
   getters: {
     getUserLogin: function (state) {
@@ -97,9 +128,11 @@ var store = new Vuex.Store({
     },
     cartListTotalAmount: function (state) {
       var totalAmount = 0
+      console.log('state.cartList:' + JSON.stringify(state.cartList))
       state.cartList.forEach(function (item, index, array) {
-        totalAmount += item.amount
+        totalAmount += item.productNum
       })
+      console.log('state.cartList.totalAmount:'+totalAmount)
       return totalAmount
     }
   }

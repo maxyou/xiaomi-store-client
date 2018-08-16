@@ -59,7 +59,7 @@
 <script>
 import axios from 'axios'
 import {
-    mapGetters, mapMutations
+    mapGetters, mapMutations, mapActions
 } from 'vuex'
 
 export default {
@@ -108,7 +108,7 @@ export default {
         }
     },
     methods: {
-        ...mapMutations([
+        ...mapActions([
             'addToCartList'
         ]),
         gotoCart() {
