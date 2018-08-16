@@ -24,11 +24,15 @@ Vue.config.productionTip = false
 var store = new Vuex.Store({
   state: {
     userLogin: false,
+    userName: '',
     cartList: []
   },
   mutations: {
     setUserLogin(state, newState) {
       state.userLogin = newState
+    },
+    setUserName(state, name) {
+      state.userName = name
     },
     removeProduct(state, willRemove) {
       state.cartList.forEach(function (item, index, array) {
@@ -69,11 +73,24 @@ var store = new Vuex.Store({
         newItem.amount = 1
         state.cartList.push(newItem)
       }
+    },
+    syncCartList(){
+      axios.get("/carlist", {
+        headers: {
+            Cookie: 'userId='+this.userName
+        }
+    }).then((res) => {
+        
+        console.log(JSON.stringify(res.data))
+    })
     }
   },
   getters: {
     getUserLogin: function (state) {
       return state.userLogin
+    },
+    getUserName: function (state) {
+      return state.userName
     },
     getCartList: function (state) {
       return state.cartList

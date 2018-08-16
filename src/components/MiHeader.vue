@@ -62,7 +62,7 @@ export default {
     // props: ['stateLogin', 'cartListLength'],
     data() {
         return {
-            userName: '',
+            // userName: '',
             dialogFormVisible: false,
             form: {
                 name: '',
@@ -77,12 +77,14 @@ export default {
     computed: {
         ...mapGetters({
             userLogin: 'getUserLogin',
+            userName: 'getUserName',
             cartListTotalAmount: 'cartListTotalAmount'
         })
     },
     methods: {
         ...mapMutations([
-            'setUserLogin'
+            'setUserLogin',
+            'setUserName'
         ]),
         logout() {
             // this.$emit('setStateLogin', false)
@@ -109,7 +111,8 @@ export default {
                     // this.$store.commit('setUserLogin', true)
                     this.setUserLogin(true)
                     // console.log('update stateLogin:' + true)
-                    this.userName = res.data.result.userName
+                    // this.userName = res.data.result.userName
+                    this.setUserName(res.data.result.userName)
                 } else {
                     alert('login failed')
                 }
