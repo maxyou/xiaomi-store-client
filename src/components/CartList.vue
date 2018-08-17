@@ -86,11 +86,12 @@ export default {
     name: 'Cart',
     methods: {
         ...mapMutations([
-            'setProductAmount',
+            // 'setProductAmount',
             'setProductSelect'
         ]),
         ...mapActions([
-            'removeProduct'
+            'removeProduct',
+            'editProduct'
         ]),
         // handleSelectionChange(val) {
         //     console.log(JSON.stringify(val))
@@ -141,14 +142,22 @@ export default {
             this.adjustAmount(plused, 1)
         },
         adjustAmount(adjusted, change) {
+            var _this = this
             this.cartList.some(function (item, index, array) {
                 if (item.productId == adjusted.productId) {
-                    item.productNum += change
-                    if (item.productNum == 0) {
-                        item.productNum = 1
+                    // item.productNum += change
+                    // if (item.productNum == 0) {
+                    //     item.productNum = 1
+                    // }
+
+                    adjusted.productNum = item.productNum + change
+                    if (adjusted.productNum == 0) {
+                        adjusted.productNum = 1
                     }
-                    array.splice(index, 1, { ...item
-                    })
+                    _this.editProduct(adjusted)
+
+                    // array.splice(index, 1, { ...item
+                    // })
                     return true
                 }
             })

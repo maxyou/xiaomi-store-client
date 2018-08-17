@@ -53,22 +53,43 @@ var store = new Vuex.Store({
         }
       })
     },
-    setProductAmount(state, updated) {
-      state.cartList.forEach(function (item, index, array) {
-        if (item.productId == updated.productId) {
-          item.productNum = updated.productNum
-          array.splice(index, 1, { ...item
-          })
-        }
-      })
-    }
+    // setProductAmount(state, updated) {
+    //   state.cartList.forEach(function (item, index, array) {
+    //     if (item.productId == updated.productId) {
+    //       item.productNum = updated.productNum
+    //       array.splice(index, 1, { ...item
+    //       })
+    //     }
+    //   })
+    // }
   },
   actions: {
+    editProduct({
+      dispatch,
+      commit
+    }, willEdit) {
+      console.log('editProduct is called: new num is ' + willEdit.productNum)
+      axios.post("/users/caredit", {
+        Id: willEdit.Id,
+        productNum: willEdit.productNum,
+        checked: willEdit.checked,
+        headers: {
+          Cookie: 'userId=' + this.userName
+        }
+      }).then((res) => {
+        console.log('editProduct res.data:' + JSON.stringify(res.data))
+        if (res.data.status == '0') {
+          console.log('res.data.status==0')
+          dispatch('getCartListFromServer')
+        }
+      })
+
+    },
     removeProduct({
       dispatch,
       commit
     }, willRemove) {
-
+      console.log('removeProduct is called')
       axios.post("/users/cardel", {
         productId: willRemove.productId,
         headers: {
@@ -92,7 +113,7 @@ var store = new Vuex.Store({
           Cookie: 'userId=' + this.userName
         }
       }).then((res) => {
-        console.log(JSON.stringify(res.data))
+        console.log('getCartListFromServer' + JSON.stringify(res.data))
         commit('setCartList', res.data.result)
       })
 
