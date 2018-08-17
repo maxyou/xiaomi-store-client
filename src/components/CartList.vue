@@ -24,7 +24,7 @@
 
                 <div class="cart-item cart-item-select" @click="toggleSelect(item)">
                     <svg class="icon" aria-hidden="true">
-                        <use v-if="!item.select || item.select == undefined" xlink:href="#mi-icon-duoxuankuang"></use>                
+                        <use v-if="!item.checked || item.checked == undefined" xlink:href="#mi-icon-duoxuankuang"></use>                
                         <use v-else xlink:href="#mi-icon-duoxuankuang1"></use>                
                     </svg>
                 </div>
@@ -79,7 +79,9 @@
 
 <script>
 import {
-    mapGetters, mapMutations, mapActions
+    mapGetters,
+    mapMutations,
+    mapActions
 } from 'vuex'
 
 export default {
@@ -91,7 +93,8 @@ export default {
         ]),
         ...mapActions([
             'removeProduct',
-            'editProduct'
+            'editProduct',
+            'checkAllProduct'
         ]),
         // handleSelectionChange(val) {
         //     console.log(JSON.stringify(val))
@@ -108,31 +111,46 @@ export default {
             //     return item.select
             // })
         },
+        // calcSelectAll() {
+        //     if (this.cartList.length == 0) {
+        //         this.selectAll = false
+        //     } else {
+        //         this.selectAll = this.cartList.every(function (item, index, array) {
+        //             return item.checked
+        //         })
+        //     }
+        // },
         toggleSelectAll() {
-            this.selectAll = !this.selectAll
-            var sa = this.selectAll
-            this.cartList.forEach(function (item, index, array) {
-                item.select = sa
-            })
+
+            this.checkAllProduct(!this.selectAll)
+
+            // this.selectAll = !this.selectAll
+            // var sa = this.selectAll
+            // this.cartList.forEach(function (item, index, array) {
+            //     item.checked = sa
+            // })
         },
         toggleSelect(toggled) {
+            var _this = this
             this.cartList.forEach(function (item, index, array) {
                 if (item.productId == toggled.productId) {
-                    console.log('select:' + toggled.select)
-                    if (!item.select || item.select == undefined) {
-                        item.select = true
+                    console.log('checked:' + toggled.checked)
+                    if (!item.checked || item.checked == undefined) {
+                        toggled.checked = true
                     } else {
-                        item.select = false
+                        toggled.checked = false
                     }
+                    _this.editProduct(toggled)
                     // item.select = toggled.select
-                    array.splice(index, 1, { ...item
-                    })
+                    // array.splice(index, 1, { ...item
+                    // })
                 }
             })
 
-            this.selectAll = this.cartList.every(function (item, index, array) {
-                return item.select
-            })
+            // this.selectAll = this.cartList.every(function (item, index, array) {
+            //     return item.checked
+            // })
+            // calcSelectAll()
             console.log('selectAll:' + this.selectAll)
         },
         minusAmount(minused) {
@@ -167,13 +185,17 @@ export default {
     computed: {
         ...mapGetters({
             userLogin: 'getUserLogin',
+            selectAll: 'getSelectAll',
             cartList: 'getCartList',
             cartListTotalAmount: 'cartListTotalAmount'
         })
     },
+    mounted() {
+
+    },
     data() {
         return {
-            selectAll: false,
+            // selectAll: false,
             msg: 'this is cart list'
         }
     }

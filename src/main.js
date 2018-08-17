@@ -25,6 +25,7 @@ var store = new Vuex.Store({
   state: {
     userLogin: false,
     userName: '',
+    selectAll: false,
     cartList: []
   },
   mutations: {
@@ -34,8 +35,23 @@ var store = new Vuex.Store({
     setUserName(state, name) {
       state.userName = name
     },
+    setSelectAll(state, checked) {
+      state.selectAll = checked
+    },
     setCartList(state, list) {
       state.cartList = list
+
+
+      if (state.cartList.length == 0) {
+        state.selectAll = false
+      } else {
+        var selectAll = state.cartList.every(function (item, index, array) {
+          return item.checked
+        })
+        state.selectAll = selectAll
+      }
+
+
     },
     // removeProduct(state, willRemove) {
     //   state.cartList.forEach(function (item, index, array) {
@@ -44,15 +60,15 @@ var store = new Vuex.Store({
     //     }
     //   })
     // },
-    setProductSelect(state, updated) {
-      state.cartList.forEach(function (item, index, array) {
-        if (item.productId == updated.productId) {
-          item.select = updated.select
-          array.splice(index, 1, { ...item
-          })
-        }
-      })
-    },
+    // setProductSelect(state, updated) {
+    //   state.cartList.forEach(function (item, index, array) {
+    //     if (item.productId == updated.productId) {
+    //       item.select = updated.select
+    //       array.splice(index, 1, { ...item
+    //       })
+    //     }
+    //   })
+    // },
     // setProductAmount(state, updated) {
     //   state.cartList.forEach(function (item, index, array) {
     //     if (item.productId == updated.productId) {
@@ -64,6 +80,25 @@ var store = new Vuex.Store({
     // }
   },
   actions: {
+    checkAllProduct({
+      dispatch,
+      commit
+    }, checked) {
+      console.log('checkAllProduct is called: new checked is ' + checked)
+      axios.post("/users/carcheckall", {
+        checked: checked,
+        headers: {
+          Cookie: 'userId=' + this.userName
+        }
+      }).then((res) => {
+        console.log('editProduct res.data:' + JSON.stringify(res.data))
+        if (res.data.status == '0') {
+          console.log('res.data.status==0')
+          dispatch('getCartListFromServer')
+        }
+      })
+
+    },
     editProduct({
       dispatch,
       commit
@@ -115,6 +150,7 @@ var store = new Vuex.Store({
       }).then((res) => {
         console.log('getCartListFromServer' + JSON.stringify(res.data))
         commit('setCartList', res.data.result)
+
       })
 
     },
@@ -144,6 +180,9 @@ var store = new Vuex.Store({
     },
     getUserName: function (state) {
       return state.userName
+    },
+    getSelectAll: function (state) {
+      return state.selectAll
     },
     getCartList: function (state) {
       return state.cartList
