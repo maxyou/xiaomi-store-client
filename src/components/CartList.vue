@@ -79,31 +79,33 @@
 
 <script>
 import {
-    mapGetters,
-    mapMutations
+    mapGetters, mapMutations, mapActions
 } from 'vuex'
 
 export default {
     name: 'Cart',
     methods: {
         ...mapMutations([
-            'removeProduct',
             'setProductAmount',
             'setProductSelect'
+        ]),
+        ...mapActions([
+            'removeProduct'
         ]),
         // handleSelectionChange(val) {
         //     console.log(JSON.stringify(val))
         // }
-        del(willDel){
-            this.cartList.some(function (item, index, array) {
-                if (item.productId == willDel.productId) {
-                    array.splice(index, 1)
-                }
-            })
+        del(willDel) {
+            this.removeProduct(willDel)
+            // this.cartList.some(function (item, index, array) {
+            //     if (item.productId == willDel.productId) {
+            //         array.splice(index, 1)
+            //     }
+            // })
 
-            this.selectAll = this.cartList.every(function (item, index, array) {
-                return item.select
-            })
+            // this.selectAll = this.cartList.every(function (item, index, array) {
+            //     return item.select
+            // })
         },
         toggleSelectAll() {
             this.selectAll = !this.selectAll
@@ -271,6 +273,7 @@ export default {
 .cart-item-total {
     width: 100px;
 }
+
 .cart-item-del {
     width: 50px;
 }

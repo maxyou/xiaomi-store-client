@@ -37,13 +37,13 @@ var store = new Vuex.Store({
     setCartList(state, list) {
       state.cartList = list
     },
-    removeProduct(state, willRemove) {
-      state.cartList.forEach(function (item, index, array) {
-        if (item.productId == willRemove.productId) {
-          array.splice(index, 1)
-        }
-      })
-    },
+    // removeProduct(state, willRemove) {
+    //   state.cartList.forEach(function (item, index, array) {
+    //     if (item.productId == willRemove.productId) {
+    //       array.splice(index, 1)
+    //     }
+    //   })
+    // },
     setProductSelect(state, updated) {
       state.cartList.forEach(function (item, index, array) {
         if (item.productId == updated.productId) {
@@ -64,7 +64,25 @@ var store = new Vuex.Store({
     }
   },
   actions: {
+    removeProduct({
+      dispatch,
+      commit
+    }, willRemove) {
 
+      axios.post("/users/cardel", {
+        productId: willRemove.productId,
+        headers: {
+          Cookie: 'userId=' + this.userName
+        }
+      }).then((res) => {
+        console.log(JSON.stringify('res.data:' + res.data))
+        if (res.data.status == '0') {
+          console.log('res.data.status==0')
+          dispatch('getCartListFromServer')
+        }
+      })
+
+    },
     getCartListFromServer({
       dispatch,
       commit
@@ -79,7 +97,6 @@ var store = new Vuex.Store({
       })
 
     },
-
     addToCartList({
       dispatch,
       commit
