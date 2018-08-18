@@ -34,10 +34,10 @@
                     <!-- <div><img :src="require('@/assets/goods/' + item.productImg)" alt=""></div> -->
                     <div><img :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
 
-                    <div>{{item.productName}}</div>
-                    <div>${{item.productPrice}}</div>
-                    <div>
-                        <el-button @click="addToCart(item)">add to cart</el-button>
+                    <div class="flex-items-spec">{{item.productName}}</div>
+                    <div class="flex-items-spec flex-items-spec-price">${{item.productPrice}}</div>
+                    <div class="flex-items-spec flex-items-spec-add">
+                        <el-button class="flex-items-spec-add-button" @click="addToCart(item)">add to cart</el-button>
                         <!-- <el-button @click="stateLogin?addToCart(item):open()">add to cart</el-button> -->
                         <!-- <el-button @click="open">open</el-button> -->
                     </div>
@@ -183,7 +183,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    /* background-color: gray; */
+    background-color: white;
 }
  .sort-bar-header-a{
      margin: 10px;
@@ -225,7 +225,7 @@ export default {
 .goods-list {
     float: left;
     width: 85%;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 
 .flex-container {
@@ -237,10 +237,30 @@ export default {
 
 .flex-items {
     width: 250px;
-    height: 350px;
+    height: 370px;
     /* flex: 1; */
     margin: 10px;
-    background-color: crimson;
+    background-color: white;
+}
+.flex-items:hover {
+    border: 1px solid red;
+
+}
+.flex-items-spec{
+    margin: 5px;
+    /* background-color: blueviolet; */
+    display: flex;
+}
+.flex-items-spec-price{
+    color: red;
+}
+.flex-items-spec-add{
+    justify-content: center;
+}
+
+.flex-items-spec-add-button {
+    width: 100%;
+    border: 2px solid red;
 }
 
 .flex-items img {

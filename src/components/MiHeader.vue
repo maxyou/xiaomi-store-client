@@ -123,7 +123,7 @@ export default {
 .flex-container {
     width: 100%;
     height: 100px;
-    /* background-color: yellowgreen; */
+    background-color: white;
     display: flex;
     flex-wrap: nowrap;
     /* justify-content: space-around; */
