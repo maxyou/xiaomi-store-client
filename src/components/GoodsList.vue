@@ -32,7 +32,7 @@
                 <div class="flex-items" v-for="item in filterAndSortGoodsList()" :key="item.id">
                     <!-- <div><img :src="getSrc(item.productImg)" alt=""></div> -->
                     <!-- <div><img :src="require('@/assets/goods/' + item.productImg)" alt=""></div> -->
-                    <div><img :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
+                    <div><img :src="serverBaseUrl + '/static/' + item.productImg" alt=""></div>
 
                     <div class="flex-items-spec">{{item.productName}}</div>
                     <div class="flex-items-spec flex-items-spec-price">${{item.productPrice}}</div>
@@ -72,7 +72,8 @@ export default {
     // ],
     computed: {
         ...mapGetters({
-            userLogin: 'getUserLogin'
+            userLogin: 'getUserLogin',
+            serverBaseUrl:'getServerBaseUrl'
         })
     },
     data() {

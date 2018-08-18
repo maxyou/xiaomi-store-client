@@ -15,17 +15,29 @@ module.exports = {
       //   target: 'http://hotemotion.fun:3389'        
       // },
       '/goods':{
-        target:'http://hotemotion.fun:3389'
+        target: 'http://hotemotion.fun:3389'
       },
       '/goods/*':{
-        target:'http://hotemotion.fun:3389'
+        target: 'http://hotemotion.fun:3389'
       },
       '/user':{
-        target:'http://hotemotion.fun:3389'
+        target: 'http://hotemotion.fun:3389'
       },
       '/user/*':{
-        target:'http://hotemotion.fun:3389'
+        target: 'http://hotemotion.fun:3389'
       }
+      // '/goods':{
+      //   target:'http://39.105.46.0:8080'
+      // },
+      // '/goods/*':{
+      //   target:'http://39.105.46.0:8080'
+      // },
+      // '/user':{
+      //   target:'http://39.105.46.0:8080'
+      // },
+      // '/user/*':{
+      //   target:'http://39.105.46.0:8080'
+      // }
     },
 
     // Various Dev Server settings

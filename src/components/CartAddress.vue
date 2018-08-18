@@ -42,9 +42,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.cart-address {
-    /* background-color: brown; */
-}
+/* .cart-address {
+    background-color: brown;
+} */
 
 .cart-steps {
     /* background-color: aqua; */

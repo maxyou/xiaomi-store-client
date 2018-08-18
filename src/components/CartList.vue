@@ -27,7 +27,7 @@
                         <use v-else xlink:href="#mi-icon-duoxuankuang1"></use>                
                     </svg>
                 </div>
-                <div class="cart-item cart-item-img"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + item.productImg" alt=""></div>
+                <div class="cart-item cart-item-img"><img class="goods-pic" :src="serverBaseUrl + '/static/' + item.productImage" alt=""></div>
                 <div class="cart-item cart-item-name">{{item.productName}}</div>
                 <div class="cart-item cart-item-price">RMB {{item.productPrice}}</div>
                 <div class="cart-item cart-item-amount-minus" @click="minusAmount(item)">
@@ -127,7 +127,8 @@ export default {
             userLogin: 'getUserLogin',
             selectAll: 'getSelectAll',
             cartList: 'getCartList',
-            cartListTotalAmount: 'cartListTotalAmount'
+            cartListTotalAmount: 'cartListTotalAmount',
+            serverBaseUrl:'getServerBaseUrl'
         })
     },
     mounted() {

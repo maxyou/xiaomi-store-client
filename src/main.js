@@ -26,7 +26,8 @@ var store = new Vuex.Store({
     userLogin: false,
     userName: '',
     selectAll: false,
-    cartList: []
+    cartList: [],
+    serverBaseUrl:'http://hotemotion.fun:3389'
   },
   mutations: {
     setUserLogin(state, newState) {
@@ -50,34 +51,7 @@ var store = new Vuex.Store({
         })
         state.selectAll = selectAll
       }
-
-
     },
-    // removeProduct(state, willRemove) {
-    //   state.cartList.forEach(function (item, index, array) {
-    //     if (item.productId == willRemove.productId) {
-    //       array.splice(index, 1)
-    //     }
-    //   })
-    // },
-    // setProductSelect(state, updated) {
-    //   state.cartList.forEach(function (item, index, array) {
-    //     if (item.productId == updated.productId) {
-    //       item.select = updated.select
-    //       array.splice(index, 1, { ...item
-    //       })
-    //     }
-    //   })
-    // },
-    // setProductAmount(state, updated) {
-    //   state.cartList.forEach(function (item, index, array) {
-    //     if (item.productId == updated.productId) {
-    //       item.productNum = updated.productNum
-    //       array.splice(index, 1, { ...item
-    //       })
-    //     }
-    //   })
-    // }
   },
   actions: {
     checkAllProduct({
@@ -195,6 +169,9 @@ var store = new Vuex.Store({
       })
       console.log('state.cartList.totalAmount:' + totalAmount)
       return totalAmount
+    },
+    getServerBaseUrl: function (state) {
+      return state.serverBaseUrl
     }
   }
 })
