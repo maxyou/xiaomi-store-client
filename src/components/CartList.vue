@@ -256,9 +256,9 @@ export default {
     padding-right: 20px;
     background-color: darkgrey;
     color: white;
-    height: 50px;
     text-decoration: none;
-    display: block;
+    /* height: 100%; */
+    /* display: block; */
     line-height: 50px;
 }
 </style>
