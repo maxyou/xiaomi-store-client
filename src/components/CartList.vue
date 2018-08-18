@@ -1,6 +1,5 @@
 <template>
 <div class="cart-list">
-    <h4>{{ msg }}</h4>
 
     <ul class="cart-item-ul">
         <div class="cart-item-container">
@@ -52,7 +51,11 @@
         </li>
     </ul>
 
-    <router-link to="/cart/address" tag="el-button">goto /cart/address</router-link>
+    <div class="cart-next">
+        <span class="cart-next-total">total</span>
+        <router-link class="cart-next-goto" to="/cart/address" tag="a">goto /cart/address</router-link>
+    </div>
+    
 </div>
 </template>
 
@@ -141,7 +144,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .cart-list {
-    background-color: darkgoldenrod;
+    background-color: white;
 }
 
 .goods-pic {
@@ -159,7 +162,7 @@ export default {
 }
 
 .cart-item-ul {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     -webkit-padding-start: 0%;
     width: 100%;
     /* height: 50px; */
@@ -168,14 +171,14 @@ export default {
 
 .cart-item-li {
     margin: 0px;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
     width: 100%;
     height: 65px;
     list-style: none;
 }
 
 .cart-item-container {
-    background-color: darksalmon;
+    /* background-color: darksalmon; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,5 +234,31 @@ export default {
 
 .cart-item-del {
     width: 50px;
+}
+
+.cart-next{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: aqua;
+}
+
+.cart-next-total{
+    color: red;
+    padding-right: 20px;
+}
+
+.cart-next-goto{
+    /* margin-left: 20px; */
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: darkgrey;
+    color: white;
+    height: 50px;
+    text-decoration: none;
+    display: block;
+    line-height: 50px;
 }
 </style>
