@@ -1,6 +1,11 @@
 <template>
 <div class="cart-detail">
-    <h1>{{ msg }}</h1>
+        <el-steps class="cart-steps" :active="active" finish-status="success">
+        <el-step title="confirm address"></el-step>
+        <el-step title="view order"></el-step>
+        <el-step title="pay"></el-step>
+        <el-step title="confirm pay"></el-step>
+    </el-steps>
     <div class="cart-next">
         <router-link class="cart-next-goto" to="/cart/completed" tag="a">goto /cart/completed</router-link>
     </div>
@@ -12,7 +17,7 @@ export default {
     name: 'Cart',
     data() {
         return {
-            goodsList: [],
+            active: 1,
             msg: 'this is cart detail'
         }
     }
@@ -25,6 +30,11 @@ export default {
     background-color: goldenrod;
 }
 
+.cart-steps {
+    /* background-color: aqua; */
+    padding-left: 20px;
+    padding-top: 20px;
+}
 
 .cart-next {
     width: 100%;
