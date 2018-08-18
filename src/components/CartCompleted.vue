@@ -11,7 +11,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#mi-icon-dingdanwancheng"></use>
         </svg>
-        <span>congratuation, your order is done</span>
+        <span class="cart-completed-done-cong">congratuation, your order is done</span>
         <div class="cart-completed-done-next">
             <div class="cart-completed-done-next-cartlist">
                 <router-link to="/cart" tag="a">goto /cart</router-link>
@@ -39,13 +39,24 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.cart-completed {
-    /* background-color: hotpink; */
-}
+/* .cart-completed {
+    background-color: hotpink;
+} */
 
 .cart-steps {
     margin-top: 20px;
     margin-left: 20px;
+}
+
+.icon{
+  width: 120px;
+  height: 120px;
+  margin-top: 20px;
+}
+
+.cart-completed-done-cong{
+  margin: 20px;
+  color:crimson;
 }
 
 .cart-completed-done {

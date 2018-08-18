@@ -1,8 +1,7 @@
 <template>
 <div id="app">
     <miheader class="miheader"></miheader>
-    <router-view></router-view>
-    <hr>
+    <router-view></router-view>    
 </div>
 </template>
 
