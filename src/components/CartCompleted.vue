@@ -13,12 +13,11 @@
         </svg>
         <span class="cart-completed-done-cong">congratuation, your order is done</span>
         <div class="cart-completed-done-next">
-            <div class="cart-completed-done-next-cartlist">
-                <router-link to="/cart" tag="a">goto /cart</router-link>
-            </div>
-            <div class="cart-completed-done-next-goodslist">
-                <router-link to="/goodslist" tag="a">goto /goodslist</router-link>
-            </div>
+
+            <router-link class="cart-completed-done-next-cartlist" to="/cart" tag="a">goto /cart</router-link>
+
+            <router-link class="cart-completed-done-next-goodslist" to="/goodslist" tag="a">goto /goodslist</router-link>
+
         </div>
     </div>
 
@@ -48,15 +47,15 @@ export default {
     margin-left: 20px;
 }
 
-.icon{
-  width: 120px;
-  height: 120px;
-  margin-top: 20px;
+.icon {
+    width: 120px;
+    height: 120px;
+    margin-top: 20px;
 }
 
-.cart-completed-done-cong{
-  margin: 20px;
-  color:crimson;
+.cart-completed-done-cong {
+    margin: 20px;
+    color: crimson;
 }
 
 .cart-completed-done {
@@ -80,6 +79,8 @@ export default {
     line-height: 50px;
     width: 120px;
     height: 50px;
+    display: inline-block;
+    text-decoration: none;
     background-color: crimson;
 }
 
@@ -88,6 +89,9 @@ export default {
     line-height: 50px;
     width: 120px;
     height: 50px;
+    display: inline-block;
+    text-decoration: none;
     background-color: crimson;
 }
+
 </style>
