@@ -2,9 +2,9 @@
 <div>
     <!-- <h1>{{ msg }}</h1> -->
     <div class="sort-bar-header">
-        <span>sort</span>
-        <el-button>default</el-button>
-        <el-button @click="sortPriceUp=!sortPriceUp">price</el-button>
+        <span class="sort-bar-header-a">sort:</span>
+        <span><a class="sort-bar-header-a" href="#">default</a></span>
+        <span><a  class="sort-bar-header-a" href="#"  @click="sortPriceUp=!sortPriceUp">price</a></span>
         <svg class="icon" v-if="sortPriceUp" aria-hidden="true">
                     <use xlink:href="#mi-icon-icon_down"></use>
                     </svg>
@@ -183,9 +183,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    background-color: gray;
+    /* background-color: gray; */
 }
-
+ .sort-bar-header-a{
+     margin: 10px;
+     text-decoration: none;
+ }
 .icon {
     width: 1em;
     height: 1em;
@@ -198,11 +201,12 @@ export default {
     float: left;
     width: 15%;
     height: 500px;
-    background-color: rgb(200, 255, 0);
+    /* background-color: rgb(200, 255, 0); */
 }
 
 .sort-bar-left-ul {
-    background-color: rgb(100, 155, 200);
+    /* background-color: rgb(100, 155, 200); */
+    -webkit-padding-start: 0%;
 }
 
 .sort-bar-left-li {

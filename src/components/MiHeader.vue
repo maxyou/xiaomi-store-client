@@ -1,12 +1,7 @@
 <template>
 <div>
-    <!-- <h1>====={{ $store.getters.getUserLogin }}=====</h1>
-    <h1>====={{ $store.state.userLogin }}=====</h1> -->
     <div class="flex-container">
 
-        <!-- <img src="@/assets/logo.png"> -->
-
-        <!-- <img src="@/assets/logo.png" width="128" height="128" alt="goto goods list"> -->
         <router-link to="/goodslist" class="flex-items flex-logo">
             <img src="@/assets/logo.jpg" height="64" alt="goto goods list">
         </router-link>
@@ -52,25 +47,21 @@
 
 <script>
 import "@/assets/icons/iconfont.js"
-// import axios from 'axios'
+
 import {
     mapGetters, mapMutations
 } from 'vuex'
 
 export default {
     name: 'MiHeader',
-    // props: ['stateLogin', 'cartListLength'],
     data() {
         return {
-            // userName: '',
             dialogFormVisible: false,
             form: {
                 name: '',
                 pwd: ''
             },
             formLabelWidth: '120px',
-            // login: false,
-            // howManyInShopCart: 0,
             msg: 'this is Header'
         }
     },
@@ -87,9 +78,6 @@ export default {
             'setUserName'
         ]),
         logout() {
-            // this.$emit('setStateLogin', false)
-            // this.$emit('update:stateLogin', false)
-            // this.$store.commit('setUserLogin', false)
             this.setUserLogin(false)
         },
         showLoginDialog() {
@@ -105,20 +93,13 @@ export default {
                 console.log(JSON.stringify(res.data))
 
                 if (res.data.status == 0) {
-                    //login success
-                    // this.$emit('setStateLogin', true)
-                    // this.$emit('update:stateLogin', true)
-                    // this.$store.commit('setUserLogin', true)
                     this.setUserLogin(true)
-                    // console.log('update stateLogin:' + true)
-                    // this.userName = res.data.result.userName
                     this.setUserName(res.data.result.userName)
                 } else {
                     alert('login failed')
                 }
 
             })
-            // console.log('name:' + this.form.name + ' pwd:' + this.form.pwd)
         }
     }
 }
@@ -142,7 +123,7 @@ export default {
 .flex-container {
     width: 100%;
     height: 100px;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     display: flex;
     flex-wrap: nowrap;
     /* justify-content: space-around; */

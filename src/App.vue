@@ -1,13 +1,6 @@
 <template>
 <div id="app">
-    <!-- <h1>stateLogin:{{appState.stateLogin}}, cartList:{{appState.cartList}}</h1> -->
-    <hr>
-    <!-- <button @click="getGoodsList">load goods list</button> -->
-    <!-- <miheader v-bind:stateLogin="stateLogin" v-on:setStateLogin="setStateLogin" class="miheader"></miheader> -->
-    <!-- <miheader v-bind.sync="appState" class="miheader"></miheader> -->
     <miheader class="miheader"></miheader>
-    <!-- <hr> -->
-    <!-- <router-view v-bind.sync="appState" v-on:cartChange="cartChange"></router-view> -->
     <router-view></router-view>
     <hr>
 </div>
@@ -18,8 +11,6 @@ import MiHeader from './components/MiHeader.vue'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 
-// axios.defaults.baseURL = 'http://hotemotion.fun:3389';
-
 export default {
     name: 'App',
     components: {
@@ -27,13 +18,7 @@ export default {
     },
     data() {
         return {
-            // appState: {
-            //     stateLogin: false,
-            //     cartList: [],
-            //     cartListLength: 0
-            // }
         }
-
     },
     computed: {
         ...mapGetters({
@@ -48,48 +33,8 @@ export default {
                 })
             }
         }
-        // stateLogin: function (newVal, oldVal) {
-        //     console.log('stateLogin changed: ' + this.stateLogin)
-        // }
-        // cartList: {
-        //     handler(newVal, oldVal) {
-
-        //         this.cartListLength = this.cartList.length
-        //         console.log('cartListLength changed: ' + this.cartListLength)
-
-        //     },
-        //     deep: true
-        // }
-        // cartList: function (newVal, oldVal) {
-        //     this.cartListLength = this.cartList.length
-        //     console.log('cartListLength changed: ' + this.cartListLength)
-        // }
     },
     methods: {
-        // cartChange(){
-        //         this.appState.cartListLength = this.appState.cartList.length
-        //         console.log('cartListLength changed: ' + this.appState.cartListLength)
-        // },
-        // setStateLogin(e) {
-        //     this.stateLogin = e;
-        //     if (!e) {
-        //         this.$router.push({
-        //             path: '/'
-        //         })
-        //     }
-        // },
-        // getGoodsList() {
-        //     axios.get("/goods/list", {
-        //         params: {
-        //             page: 0,
-        //             pageSize: 8,
-        //             orderFlag: true,
-        //             priceLevel: '4'
-        //         }
-        //     }).then((res) => {
-        //         console.log(JSON.stringify(res.data))
-        //     })
-        // }
 
     }
 }
@@ -100,7 +45,7 @@ export default {
     width: 80%;
     min-width: 800px;
     margin: 0 auto;
-    background-color: green;
+    /* background-color: green; */
 }
 
 /* .miheader {

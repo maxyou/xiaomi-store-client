@@ -52,27 +52,6 @@
         </li>
     </ul>
 
-    <!-- <el-table ref="multipleTable" :data="cartList" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column label="pic" width="120">
-            <template slot-scope="scope"><img class="goods-pic" :src="'http://hotemotion.fun:3389/static/' + scope.row.productImg" alt=""></template>
-        </el-table-column>
-        <el-table-column prop="productName" label="name" width="120"></el-table-column>
-        <el-table-column prop="productPrice" label="price" width="120"></el-table-column>
-        <el-table-column prop="amount" label="amount" width="120">
-            <template slot-scope="scope">
-                <div class="adjust-amount-container">
-                    <div class="adjust-amount">-</div>{{ scope.row.amount }}
-                    <div class="adjust-amount">+</div>
-                </div>
-            </template>
-        </el-table-column>
-        <el-table-column prop="amount" label="total" width="120">
-            <template slot-scope="scope">{{ parseFloat(scope.row.productPrice) * scope.row.amount }}</template>
-        </el-table-column>
-
-    </el-table> -->
-
     <router-link to="/cart/address" tag="el-button">goto /cart/address</router-link>
 </div>
 </template>
@@ -88,7 +67,6 @@ export default {
     name: 'Cart',
     methods: {
         ...mapMutations([
-            // 'setProductAmount',
             'setProductSelect'
         ]),
         ...mapActions([
@@ -96,39 +74,11 @@ export default {
             'editProduct',
             'checkAllProduct'
         ]),
-        // handleSelectionChange(val) {
-        //     console.log(JSON.stringify(val))
-        // }
         del(willDel) {
             this.removeProduct(willDel)
-            // this.cartList.some(function (item, index, array) {
-            //     if (item.productId == willDel.productId) {
-            //         array.splice(index, 1)
-            //     }
-            // })
-
-            // this.selectAll = this.cartList.every(function (item, index, array) {
-            //     return item.select
-            // })
         },
-        // calcSelectAll() {
-        //     if (this.cartList.length == 0) {
-        //         this.selectAll = false
-        //     } else {
-        //         this.selectAll = this.cartList.every(function (item, index, array) {
-        //             return item.checked
-        //         })
-        //     }
-        // },
         toggleSelectAll() {
-
             this.checkAllProduct(!this.selectAll)
-
-            // this.selectAll = !this.selectAll
-            // var sa = this.selectAll
-            // this.cartList.forEach(function (item, index, array) {
-            //     item.checked = sa
-            // })
         },
         toggleSelect(toggled) {
             var _this = this
@@ -141,16 +91,9 @@ export default {
                         toggled.checked = false
                     }
                     _this.editProduct(toggled)
-                    // item.select = toggled.select
-                    // array.splice(index, 1, { ...item
-                    // })
                 }
             })
 
-            // this.selectAll = this.cartList.every(function (item, index, array) {
-            //     return item.checked
-            // })
-            // calcSelectAll()
             console.log('selectAll:' + this.selectAll)
         },
         minusAmount(minused) {
@@ -163,10 +106,6 @@ export default {
             var _this = this
             this.cartList.some(function (item, index, array) {
                 if (item.productId == adjusted.productId) {
-                    // item.productNum += change
-                    // if (item.productNum == 0) {
-                    //     item.productNum = 1
-                    // }
 
                     adjusted.productNum = item.productNum + change
                     if (adjusted.productNum == 0) {
@@ -174,8 +113,6 @@ export default {
                     }
                     _this.editProduct(adjusted)
 
-                    // array.splice(index, 1, { ...item
-                    // })
                     return true
                 }
             })
@@ -195,7 +132,6 @@ export default {
     },
     data() {
         return {
-            // selectAll: false,
             msg: 'this is cart list'
         }
     }
@@ -213,18 +149,6 @@ export default {
     height: 45px;
 }
 
-/* .adjust-amount-container {
-    display: flex;
-    width: 60px;
-    background-color: coral;
-    justify-content: space-between;
-}
-
-.adjust-amount {
-    display: inline;
-    border: 1px solid #7b797b;
-    padding: 3px;
-} */
 
 .icon {
     width: 1em;
