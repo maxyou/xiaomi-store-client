@@ -27,7 +27,8 @@ var store = new Vuex.Store({
     userName: '',
     selectAll: false,
     cartList: [],
-    serverBaseUrl:'http://hotemotion.fun:3389'
+    // serverBaseUrl:'http://hotemotion.fun:3389'
+    serverBaseUrl:'http://linyijiu.cn:3000'
   },
   mutations: {
     setUserLogin(state, newState) {

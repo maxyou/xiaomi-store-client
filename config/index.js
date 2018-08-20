@@ -14,30 +14,30 @@ module.exports = {
       // '/static': {
       //   target: 'http://hotemotion.fun:3389'        
       // },
-      '/goods':{
-        target: 'http://hotemotion.fun:3389'
-      },
-      '/goods/*':{
-        target: 'http://hotemotion.fun:3389'
-      },
-      '/user':{
-        target: 'http://hotemotion.fun:3389'
-      },
-      '/user/*':{
-        target: 'http://hotemotion.fun:3389'
-      }
       // '/goods':{
-      //   target:'http://39.105.46.0:8080'
+      //   target: 'http://hotemotion.fun:3389'
       // },
       // '/goods/*':{
-      //   target:'http://39.105.46.0:8080'
+      //   target: 'http://hotemotion.fun:3389'
       // },
       // '/user':{
-      //   target:'http://39.105.46.0:8080'
+      //   target: 'http://hotemotion.fun:3389'
       // },
       // '/user/*':{
-      //   target:'http://39.105.46.0:8080'
+      //   target: 'http://hotemotion.fun:3389'
       // }
+      '/goods':{
+        target:'http://linyijiu.cn:3000'
+      },
+      '/goods/*':{
+        target:'http://linyijiu.cn:3000'
+      },
+      '/user':{
+        target:'http://linyijiu.cn:3000'
+      },
+      '/user/*':{
+        target:'http://linyijiu.cn:3000'
+      }
     },
 
     // Various Dev Server settings
