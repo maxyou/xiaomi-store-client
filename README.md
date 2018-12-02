@@ -1,6 +1,7 @@
 # xiaomi-store-client
 
-> My first Vue.js work is a XiaoMi store client. A volunteer from BangBangTuan privide server,sincere thanks to BangBangTuan and the volunteer guy LinYiJiu! Not sure how long can this guy support.
+> My first Vue.js work is a XiaoMi store client. 
+> Sincere thanks to BangBangTuan which organize this study group! Sincere thanks to the guy LinYiJiu who privide server-side! Not sure how long can this guy support.
 
 ## Build Setup
 
