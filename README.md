@@ -14,4 +14,4 @@ npm run dev
 ```
 ![goods list][1]<br>
 
-[1]: https://raw.githubusercontent.com/maxyou/xiaomi-store-client/maxter/goodslist.PNG
+[1]: https://raw.githubusercontent.com/maxyou/xiaomi-store-client/master/goodslist.PNG
