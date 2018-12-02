@@ -1,6 +1,6 @@
 # xiaomi-store-client
 
-> A Vue.js project
+> My first Vue.js work is a XiaoMi store client. A volunteer from bangbangtuan privide server, thanks! Not sure how long can this guy support.
 
 ## Build Setup
 
@@ -11,11 +11,7 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
+![goods list][1]<br>
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+[1]: https://raw.githubusercontent.com/maxyou/xiaomi-store-client/maxter/goodslist.PNG
